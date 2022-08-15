@@ -5,7 +5,7 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
-
 install(FILES
-    krakensdr_krakensdr_source.block.yml DESTINATION share/gnuradio/grc/blocks
+    krakensdr_krakensdr_source.block.yml
+    krakensdr_krakensdr_correlator.block.yml DESTINATION share/gnuradio/grc/blocks
 )

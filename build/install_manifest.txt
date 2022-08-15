@@ -2,8 +2,12 @@
 /usr/local/include/gnuradio/krakensdr/api.h
 /usr/local/lib/python3.8/dist-packages/gnuradio/krakensdr/__init__.py
 /usr/local/lib/python3.8/dist-packages/gnuradio/krakensdr/krakensdr_source.py
+/usr/local/lib/python3.8/dist-packages/gnuradio/krakensdr/krakensdr_correlator.py
 /usr/local/lib/python3.8/dist-packages/gnuradio/krakensdr/__init__.pyc
 /usr/local/lib/python3.8/dist-packages/gnuradio/krakensdr/krakensdr_source.pyc
+/usr/local/lib/python3.8/dist-packages/gnuradio/krakensdr/krakensdr_correlator.pyc
 /usr/local/lib/python3.8/dist-packages/gnuradio/krakensdr/__init__.pyo
 /usr/local/lib/python3.8/dist-packages/gnuradio/krakensdr/krakensdr_source.pyo
+/usr/local/lib/python3.8/dist-packages/gnuradio/krakensdr/krakensdr_correlator.pyo
 /usr/local/share/gnuradio/grc/blocks/krakensdr_krakensdr_source.block.yml
+/usr/local/share/gnuradio/grc/blocks/krakensdr_krakensdr_correlator.block.yml

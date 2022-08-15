@@ -80,6 +80,28 @@ install/local/fast: preinstall/fast
 	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
@@ -112,28 +134,6 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -183,19 +183,19 @@ copy_module_for_tests/fast:
 .PHONY : copy_module_for_tests/fast
 
 # Convenience name for target.
-python/krakensdr/CMakeFiles/pygen_python_krakensdr_2d360.dir/rule:
-	cd /home/carl/gr-krakensdr/build && $(MAKE) -f CMakeFiles/Makefile2 python/krakensdr/CMakeFiles/pygen_python_krakensdr_2d360.dir/rule
-.PHONY : python/krakensdr/CMakeFiles/pygen_python_krakensdr_2d360.dir/rule
+python/krakensdr/CMakeFiles/pygen_python_krakensdr_3d705.dir/rule:
+	cd /home/carl/gr-krakensdr/build && $(MAKE) -f CMakeFiles/Makefile2 python/krakensdr/CMakeFiles/pygen_python_krakensdr_3d705.dir/rule
+.PHONY : python/krakensdr/CMakeFiles/pygen_python_krakensdr_3d705.dir/rule
 
 # Convenience name for target.
-pygen_python_krakensdr_2d360: python/krakensdr/CMakeFiles/pygen_python_krakensdr_2d360.dir/rule
+pygen_python_krakensdr_3d705: python/krakensdr/CMakeFiles/pygen_python_krakensdr_3d705.dir/rule
 
-.PHONY : pygen_python_krakensdr_2d360
+.PHONY : pygen_python_krakensdr_3d705
 
 # fast build rule for target.
-pygen_python_krakensdr_2d360/fast:
-	cd /home/carl/gr-krakensdr/build && $(MAKE) -f python/krakensdr/CMakeFiles/pygen_python_krakensdr_2d360.dir/build.make python/krakensdr/CMakeFiles/pygen_python_krakensdr_2d360.dir/build
-.PHONY : pygen_python_krakensdr_2d360/fast
+pygen_python_krakensdr_3d705/fast:
+	cd /home/carl/gr-krakensdr/build && $(MAKE) -f python/krakensdr/CMakeFiles/pygen_python_krakensdr_3d705.dir/build.make python/krakensdr/CMakeFiles/pygen_python_krakensdr_3d705.dir/build
+.PHONY : pygen_python_krakensdr_3d705/fast
 
 # Help Target
 help:
@@ -205,13 +205,13 @@ help:
 	@echo "... depend"
 	@echo "... install/strip"
 	@echo "... install/local"
+	@echo "... edit_cache"
+	@echo "... test"
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... copy_module_for_tests"
-	@echo "... edit_cache"
-	@echo "... test"
-	@echo "... pygen_python_krakensdr_2d360"
+	@echo "... pygen_python_krakensdr_3d705"
 .PHONY : help
 
 

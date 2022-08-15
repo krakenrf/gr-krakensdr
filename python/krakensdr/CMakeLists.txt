@@ -22,7 +22,8 @@ add_subdirectory(bindings)
 GR_PYTHON_INSTALL(
     FILES
     __init__.py
-    krakensdr_source.py DESTINATION ${GR_PYTHON_DIR}/gnuradio/krakensdr
+    krakensdr_source.py
+    krakensdr_correlator.py DESTINATION ${GR_PYTHON_DIR}/gnuradio/krakensdr
 )
 
 ########################################################################

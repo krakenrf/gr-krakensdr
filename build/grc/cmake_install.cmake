@@ -38,6 +38,9 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gnuradio/grc/blocks" TYPE FILE FILES "/home/carl/gr-krakensdr/grc/krakensdr_krakensdr_source.block.yml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/gnuradio/grc/blocks" TYPE FILE FILES
+    "/home/carl/gr-krakensdr/grc/krakensdr_krakensdr_source.block.yml"
+    "/home/carl/gr-krakensdr/grc/krakensdr_krakensdr_correlator.block.yml"
+    )
 endif()
 

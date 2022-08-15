@@ -178,7 +178,7 @@ lib/clean:
 
 # Recursive "all" directory target.
 python/krakensdr/all: python/krakensdr/CMakeFiles/copy_module_for_tests.dir/all
-python/krakensdr/all: python/krakensdr/CMakeFiles/pygen_python_krakensdr_2d360.dir/all
+python/krakensdr/all: python/krakensdr/CMakeFiles/pygen_python_krakensdr_3d705.dir/all
 python/krakensdr/all: python/krakensdr/bindings/all
 
 .PHONY : python/krakensdr/all
@@ -190,7 +190,7 @@ python/krakensdr/preinstall: python/krakensdr/bindings/preinstall
 
 # Recursive "clean" directory target.
 python/krakensdr/clean: python/krakensdr/CMakeFiles/copy_module_for_tests.dir/clean
-python/krakensdr/clean: python/krakensdr/CMakeFiles/pygen_python_krakensdr_2d360.dir/clean
+python/krakensdr/clean: python/krakensdr/CMakeFiles/pygen_python_krakensdr_3d705.dir/clean
 python/krakensdr/clean: python/krakensdr/bindings/clean
 
 .PHONY : python/krakensdr/clean
@@ -295,31 +295,31 @@ python/krakensdr/CMakeFiles/copy_module_for_tests.dir/clean:
 .PHONY : python/krakensdr/CMakeFiles/copy_module_for_tests.dir/clean
 
 #=============================================================================
-# Target rules for target python/krakensdr/CMakeFiles/pygen_python_krakensdr_2d360.dir
+# Target rules for target python/krakensdr/CMakeFiles/pygen_python_krakensdr_3d705.dir
 
 # All Build rule for target.
-python/krakensdr/CMakeFiles/pygen_python_krakensdr_2d360.dir/all:
-	$(MAKE) -f python/krakensdr/CMakeFiles/pygen_python_krakensdr_2d360.dir/build.make python/krakensdr/CMakeFiles/pygen_python_krakensdr_2d360.dir/depend
-	$(MAKE) -f python/krakensdr/CMakeFiles/pygen_python_krakensdr_2d360.dir/build.make python/krakensdr/CMakeFiles/pygen_python_krakensdr_2d360.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/carl/gr-krakensdr/build/CMakeFiles --progress-num=1,2 "Built target pygen_python_krakensdr_2d360"
-.PHONY : python/krakensdr/CMakeFiles/pygen_python_krakensdr_2d360.dir/all
+python/krakensdr/CMakeFiles/pygen_python_krakensdr_3d705.dir/all:
+	$(MAKE) -f python/krakensdr/CMakeFiles/pygen_python_krakensdr_3d705.dir/build.make python/krakensdr/CMakeFiles/pygen_python_krakensdr_3d705.dir/depend
+	$(MAKE) -f python/krakensdr/CMakeFiles/pygen_python_krakensdr_3d705.dir/build.make python/krakensdr/CMakeFiles/pygen_python_krakensdr_3d705.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/carl/gr-krakensdr/build/CMakeFiles --progress-num=1,2 "Built target pygen_python_krakensdr_3d705"
+.PHONY : python/krakensdr/CMakeFiles/pygen_python_krakensdr_3d705.dir/all
 
 # Build rule for subdir invocation for target.
-python/krakensdr/CMakeFiles/pygen_python_krakensdr_2d360.dir/rule: cmake_check_build_system
+python/krakensdr/CMakeFiles/pygen_python_krakensdr_3d705.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/carl/gr-krakensdr/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 python/krakensdr/CMakeFiles/pygen_python_krakensdr_2d360.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 python/krakensdr/CMakeFiles/pygen_python_krakensdr_3d705.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/carl/gr-krakensdr/build/CMakeFiles 0
-.PHONY : python/krakensdr/CMakeFiles/pygen_python_krakensdr_2d360.dir/rule
+.PHONY : python/krakensdr/CMakeFiles/pygen_python_krakensdr_3d705.dir/rule
 
 # Convenience name for target.
-pygen_python_krakensdr_2d360: python/krakensdr/CMakeFiles/pygen_python_krakensdr_2d360.dir/rule
+pygen_python_krakensdr_3d705: python/krakensdr/CMakeFiles/pygen_python_krakensdr_3d705.dir/rule
 
-.PHONY : pygen_python_krakensdr_2d360
+.PHONY : pygen_python_krakensdr_3d705
 
 # clean rule for target.
-python/krakensdr/CMakeFiles/pygen_python_krakensdr_2d360.dir/clean:
-	$(MAKE) -f python/krakensdr/CMakeFiles/pygen_python_krakensdr_2d360.dir/build.make python/krakensdr/CMakeFiles/pygen_python_krakensdr_2d360.dir/clean
-.PHONY : python/krakensdr/CMakeFiles/pygen_python_krakensdr_2d360.dir/clean
+python/krakensdr/CMakeFiles/pygen_python_krakensdr_3d705.dir/clean:
+	$(MAKE) -f python/krakensdr/CMakeFiles/pygen_python_krakensdr_3d705.dir/build.make python/krakensdr/CMakeFiles/pygen_python_krakensdr_3d705.dir/clean
+.PHONY : python/krakensdr/CMakeFiles/pygen_python_krakensdr_3d705.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

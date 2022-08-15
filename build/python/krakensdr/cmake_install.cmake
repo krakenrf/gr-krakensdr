@@ -41,6 +41,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python3.8/dist-packages/gnuradio/krakensdr" TYPE FILE FILES
     "/home/carl/gr-krakensdr/python/krakensdr/__init__.py"
     "/home/carl/gr-krakensdr/python/krakensdr/krakensdr_source.py"
+    "/home/carl/gr-krakensdr/python/krakensdr/krakensdr_correlator.py"
     )
 endif()
 
@@ -48,8 +49,10 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python3.8/dist-packages/gnuradio/krakensdr" TYPE FILE FILES
     "/home/carl/gr-krakensdr/build/python/krakensdr/__init__.pyc"
     "/home/carl/gr-krakensdr/build/python/krakensdr/krakensdr_source.pyc"
+    "/home/carl/gr-krakensdr/build/python/krakensdr/krakensdr_correlator.pyc"
     "/home/carl/gr-krakensdr/build/python/krakensdr/__init__.pyo"
     "/home/carl/gr-krakensdr/build/python/krakensdr/krakensdr_source.pyo"
+    "/home/carl/gr-krakensdr/build/python/krakensdr/krakensdr_correlator.pyo"
     )
 endif()
 

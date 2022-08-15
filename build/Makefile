@@ -207,17 +207,17 @@ copy_module_for_tests/fast:
 .PHONY : copy_module_for_tests/fast
 
 #=============================================================================
-# Target rules for targets named pygen_python_krakensdr_2d360
+# Target rules for targets named pygen_python_krakensdr_3d705
 
 # Build rule for target.
-pygen_python_krakensdr_2d360: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 pygen_python_krakensdr_2d360
-.PHONY : pygen_python_krakensdr_2d360
+pygen_python_krakensdr_3d705: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pygen_python_krakensdr_3d705
+.PHONY : pygen_python_krakensdr_3d705
 
 # fast build rule for target.
-pygen_python_krakensdr_2d360/fast:
-	$(MAKE) -f python/krakensdr/CMakeFiles/pygen_python_krakensdr_2d360.dir/build.make python/krakensdr/CMakeFiles/pygen_python_krakensdr_2d360.dir/build
-.PHONY : pygen_python_krakensdr_2d360/fast
+pygen_python_krakensdr_3d705/fast:
+	$(MAKE) -f python/krakensdr/CMakeFiles/pygen_python_krakensdr_3d705.dir/build.make python/krakensdr/CMakeFiles/pygen_python_krakensdr_3d705.dir/build
+.PHONY : pygen_python_krakensdr_3d705/fast
 
 # Help Target
 help:
@@ -235,7 +235,7 @@ help:
 	@echo "... uninstall"
 	@echo "... pygen_apps_9a6dd"
 	@echo "... copy_module_for_tests"
-	@echo "... pygen_python_krakensdr_2d360"
+	@echo "... pygen_python_krakensdr_3d705"
 .PHONY : help
 
 
