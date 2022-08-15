@@ -73,96 +73,6 @@ blocks:
     coordinate: [184, 12.0]
     rotation: 0
     state: enabled
-- name: blocks_stream_to_vector_0_0_0_0
-  id: blocks_stream_to_vector
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    num_items: vec_len
-    type: complex
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [288, 416.0]
-    rotation: 0
-    state: true
-- name: blocks_stream_to_vector_0_0_0_0_0
-  id: blocks_stream_to_vector
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    num_items: vec_len
-    type: complex
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [288, 448.0]
-    rotation: 0
-    state: true
-- name: blocks_stream_to_vector_0_0_0_0_1
-  id: blocks_stream_to_vector
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    num_items: vec_len
-    type: complex
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [288, 480.0]
-    rotation: 0
-    state: true
-- name: blocks_stream_to_vector_0_0_0_0_2
-  id: blocks_stream_to_vector
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    num_items: vec_len
-    type: complex
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [288, 512.0]
-    rotation: 0
-    state: true
-- name: blocks_stream_to_vector_0_0_0_0_3
-  id: blocks_stream_to_vector
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    num_items: vec_len
-    type: complex
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [288, 544.0]
-    rotation: 0
-    state: true
 - name: krakensdr_krakensdr_correlator_0
   id: krakensdr_krakensdr_correlator
   parameters:
@@ -818,14 +728,6 @@ blocks:
     state: true
 
 connections:
-- [blocks_stream_to_vector_0_0_0_0, '0', krakensdr_krakensdr_correlator_0, '0']
-- [blocks_stream_to_vector_0_0_0_0, '0', krakensdr_krakensdr_correlator_0_0, '0']
-- [blocks_stream_to_vector_0_0_0_0, '0', krakensdr_krakensdr_correlator_0_0_0, '0']
-- [blocks_stream_to_vector_0_0_0_0, '0', krakensdr_krakensdr_correlator_0_0_1, '0']
-- [blocks_stream_to_vector_0_0_0_0_0, '0', krakensdr_krakensdr_correlator_0, '1']
-- [blocks_stream_to_vector_0_0_0_0_1, '0', krakensdr_krakensdr_correlator_0_0, '1']
-- [blocks_stream_to_vector_0_0_0_0_2, '0', krakensdr_krakensdr_correlator_0_0_0, '1']
-- [blocks_stream_to_vector_0_0_0_0_3, '0', krakensdr_krakensdr_correlator_0_0_1, '1']
 - [krakensdr_krakensdr_correlator_0, '0', qtgui_vector_sink_f_0, '0']
 - [krakensdr_krakensdr_correlator_0, '1', phase_01, '0']
 - [krakensdr_krakensdr_correlator_0_0, '0', qtgui_vector_sink_f_0_0, '0']
@@ -834,11 +736,14 @@ connections:
 - [krakensdr_krakensdr_correlator_0_0_0, '1', phase_03, '0']
 - [krakensdr_krakensdr_correlator_0_0_1, '0', qtgui_vector_sink_f_0_0_0_0, '0']
 - [krakensdr_krakensdr_correlator_0_0_1, '1', phase_04, '0']
-- [krakensdr_krakensdr_source_0, '0', blocks_stream_to_vector_0_0_0_0, '0']
-- [krakensdr_krakensdr_source_0, '1', blocks_stream_to_vector_0_0_0_0_0, '0']
-- [krakensdr_krakensdr_source_0, '2', blocks_stream_to_vector_0_0_0_0_1, '0']
-- [krakensdr_krakensdr_source_0, '3', blocks_stream_to_vector_0_0_0_0_2, '0']
-- [krakensdr_krakensdr_source_0, '4', blocks_stream_to_vector_0_0_0_0_3, '0']
+- [krakensdr_krakensdr_source_0, '0', krakensdr_krakensdr_correlator_0, '0']
+- [krakensdr_krakensdr_source_0, '0', krakensdr_krakensdr_correlator_0_0, '0']
+- [krakensdr_krakensdr_source_0, '0', krakensdr_krakensdr_correlator_0_0_0, '0']
+- [krakensdr_krakensdr_source_0, '0', krakensdr_krakensdr_correlator_0_0_1, '0']
+- [krakensdr_krakensdr_source_0, '1', krakensdr_krakensdr_correlator_0, '1']
+- [krakensdr_krakensdr_source_0, '2', krakensdr_krakensdr_correlator_0_0, '1']
+- [krakensdr_krakensdr_source_0, '3', krakensdr_krakensdr_correlator_0_0_0, '1']
+- [krakensdr_krakensdr_source_0, '4', krakensdr_krakensdr_correlator_0_0_1, '1']
 
 metadata:
   file_format: 1

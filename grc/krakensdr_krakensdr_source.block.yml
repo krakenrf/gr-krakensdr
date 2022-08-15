@@ -67,6 +67,7 @@ outputs:
 - label: ch_
   domain: stream
   dtype: complex
+  vlen: ${cpi_size}
   multiplicity: ${ numChannels }
 
 asserts:
