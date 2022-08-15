@@ -1,0 +1,91 @@
+id: krakensdr_krakensdr_source
+label: Krakensdr Source
+category: '[KrakenSDR]'
+
+templates:
+  imports: from gnuradio import krakensdr
+  make: krakensdr.krakensdr_source(${ipAddr}, ${port}, ${ctrlPort}, ${cpi_size}, ${numChannels}, ${freq}, ${gain}, ${debug})
+  callbacks:
+  - set_gain(${gain})
+  - set_freq(${freq})
+
+#  Make one 'parameters' list entry for every parameter you want settable from the GUI.
+#     Keys include:
+#     * id (makes the value accessible as keyname, e.g. in the make entry)
+#     * label (label shown in the GUI)
+#     * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#     * default
+parameters:
+- id: ipAddr
+  label: Heimdall IP Address
+  dtype: string
+  default: 127.0.0.1
+- id: port
+  label: Heimdall IQ Data Port
+  dtype: int
+  default: 5000
+- id: ctrlPort
+  label: Heimdall Control Port
+  dtype: int
+  default: 5001
+- id: cpi_size
+  label: Heimdall CPI Size
+  dtype: int
+  default: 1048576
+- id: numChannels
+  label: Number of channels
+  dtype: int
+  default: 5
+- id: freq
+  label: Frequency [MHz]
+  dtype: real
+  default: 416.588
+- id: gain
+  label: Gain [0 - 49.6]
+  dtype: real_vector
+  default: [40.2, 40.2, 40.2, 40.2, 40.2]
+- id: debug
+  label: Debug
+  dtype: bool
+  default: False
+
+#  Make one 'inputs' list entry per input and one 'outputs' list entry per output.
+#  Keys include:
+#      * label (an identifier for the GUI)
+#      * domain (optional - stream or message. Default is stream)
+#      * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#      * vlen (optional - data stream vector length. Default is 1)
+#      * optional (optional - set to 1 for optional inputs. Default is 0)
+#inputs:
+#- label: ...
+#  domain: ...
+#  dtype: ...
+#  vlen: ...
+#  optional: ...
+
+outputs:
+- label: ch_
+  domain: stream
+  dtype: complex
+  multiplicity: ${ numChannels }
+
+asserts:
+- ${ len(gain) == numChannels }
+- ${ numChannels > 0 }
+
+documentation: |-
+  Receives coherent IQ data from the KrakenSDR heimdall daq software over a socket connection.
+
+  Run heimdall first, then connect to it with this block. Heimdall handles all coherence calibration by itself, so you can treat data coming out of the KrakenSDR block as coherent.
+
+  Ensure that you use the same CPI size as what is set in the heimdall daq_chain_config.ini file.
+
+  Outputs a block of coherent IQ data for each channel. The block consists of CPI_size number of samples.
+
+  You can use a Stream->Vector block with Vector Length = 1 and Num Items = CPI_size to convert into a GNU Radio vector.
+
+  NOTES: Heimdall uses the KrakenSDR RTL-SDR driver branch, ensure that your system is using this driver. Please consult the KrakenSDR documentation Wiki at https://www.github.com/krakenrf/krakensdr_docs
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1
