@@ -73,6 +73,24 @@ blocks:
     coordinate: [184, 12.0]
     rotation: 0
     state: enabled
+- name: blocks_vector_to_stream_0
+  id: blocks_vector_to_stream
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: vec_len
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [264, 248.0]
+    rotation: 0
+    state: true
 - name: krakensdr_krakensdr_correlator_0
   id: krakensdr_krakensdr_correlator
   parameters:
@@ -430,6 +448,35 @@ blocks:
     coordinate: [904, 820.0]
     rotation: 0
     state: true
+- name: qtgui_sink_x_0
+  id: qtgui_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    bw: '32000'
+    comment: ''
+    fc: '0'
+    fftsize: '2048'
+    gui_hint: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '""'
+    plotconst: 'True'
+    plotfreq: 'True'
+    plottime: 'True'
+    plotwaterfall: 'True'
+    rate: '10'
+    showports: 'False'
+    showrf: 'False'
+    type: complex
+    wintype: window.WIN_BLACKMAN_hARRIS
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [512, 116.0]
+    rotation: 0
+    state: true
 - name: qtgui_vector_sink_f_0
   id: qtgui_vector_sink_f
   parameters:
@@ -728,6 +775,7 @@ blocks:
     state: true
 
 connections:
+- [blocks_vector_to_stream_0, '0', qtgui_sink_x_0, '0']
 - [krakensdr_krakensdr_correlator_0, '0', qtgui_vector_sink_f_0, '0']
 - [krakensdr_krakensdr_correlator_0, '1', phase_01, '0']
 - [krakensdr_krakensdr_correlator_0_0, '0', qtgui_vector_sink_f_0_0, '0']
@@ -736,6 +784,7 @@ connections:
 - [krakensdr_krakensdr_correlator_0_0_0, '1', phase_03, '0']
 - [krakensdr_krakensdr_correlator_0_0_1, '0', qtgui_vector_sink_f_0_0_0_0, '0']
 - [krakensdr_krakensdr_correlator_0_0_1, '1', phase_04, '0']
+- [krakensdr_krakensdr_source_0, '0', blocks_vector_to_stream_0, '0']
 - [krakensdr_krakensdr_source_0, '0', krakensdr_krakensdr_correlator_0, '0']
 - [krakensdr_krakensdr_source_0, '0', krakensdr_krakensdr_correlator_0_0, '0']
 - [krakensdr_krakensdr_source_0, '0', krakensdr_krakensdr_correlator_0_0_0, '0']

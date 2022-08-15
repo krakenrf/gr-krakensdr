@@ -24,9 +24,10 @@ if __name__ == '__main__':
 from PyQt5 import Qt
 from gnuradio import eng_notation
 from gnuradio import qtgui
-import sip
-from gnuradio import gr
 from gnuradio.filter import firdes
+import sip
+from gnuradio import blocks
+from gnuradio import gr
 from gnuradio.fft import window
 import sys
 import signal
@@ -244,6 +245,24 @@ class kraken_corr_test(gr.top_block, Qt.QWidget):
 
         self._qtgui_vector_sink_f_0_win = sip.wrapinstance(self.qtgui_vector_sink_f_0.qwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._qtgui_vector_sink_f_0_win)
+        self.qtgui_sink_x_0 = qtgui.sink_c(
+            2048, #fftsize
+            window.WIN_BLACKMAN_hARRIS, #wintype
+            0, #fc
+            32000, #bw
+            "", #name
+            True, #plotfreq
+            True, #plotwaterfall
+            True, #plottime
+            True, #plotconst
+            None # parent
+        )
+        self.qtgui_sink_x_0.set_update_time(1.0/10)
+        self._qtgui_sink_x_0_win = sip.wrapinstance(self.qtgui_sink_x_0.qwidget(), Qt.QWidget)
+
+        self.qtgui_sink_x_0.enable_rf_freq(False)
+
+        self.top_layout.addWidget(self._qtgui_sink_x_0_win)
         self.phase_04 = qtgui.number_sink(
             gr.sizeof_float,
             0,
@@ -381,11 +400,13 @@ class kraken_corr_test(gr.top_block, Qt.QWidget):
         self.krakensdr_krakensdr_correlator_0_0_0 = krakensdr.krakensdr_correlator(vec_len, fft_cut)
         self.krakensdr_krakensdr_correlator_0_0 = krakensdr.krakensdr_correlator(vec_len, fft_cut)
         self.krakensdr_krakensdr_correlator_0 = krakensdr.krakensdr_correlator(vec_len, fft_cut)
+        self.blocks_vector_to_stream_0 = blocks.vector_to_stream(gr.sizeof_gr_complex*1, vec_len)
 
 
         ##################################################
         # Connections
         ##################################################
+        self.connect((self.blocks_vector_to_stream_0, 0), (self.qtgui_sink_x_0, 0))
         self.connect((self.krakensdr_krakensdr_correlator_0, 1), (self.phase_01, 0))
         self.connect((self.krakensdr_krakensdr_correlator_0, 0), (self.qtgui_vector_sink_f_0, 0))
         self.connect((self.krakensdr_krakensdr_correlator_0_0, 1), (self.phase_02, 0))
@@ -394,8 +415,9 @@ class kraken_corr_test(gr.top_block, Qt.QWidget):
         self.connect((self.krakensdr_krakensdr_correlator_0_0_0, 0), (self.qtgui_vector_sink_f_0_0_0, 0))
         self.connect((self.krakensdr_krakensdr_correlator_0_0_1, 1), (self.phase_04, 0))
         self.connect((self.krakensdr_krakensdr_correlator_0_0_1, 0), (self.qtgui_vector_sink_f_0_0_0_0, 0))
-        self.connect((self.krakensdr_krakensdr_source_0, 0), (self.krakensdr_krakensdr_correlator_0, 0))
+        self.connect((self.krakensdr_krakensdr_source_0, 0), (self.blocks_vector_to_stream_0, 0))
         self.connect((self.krakensdr_krakensdr_source_0, 1), (self.krakensdr_krakensdr_correlator_0, 1))
+        self.connect((self.krakensdr_krakensdr_source_0, 0), (self.krakensdr_krakensdr_correlator_0, 0))
         self.connect((self.krakensdr_krakensdr_source_0, 0), (self.krakensdr_krakensdr_correlator_0_0, 0))
         self.connect((self.krakensdr_krakensdr_source_0, 2), (self.krakensdr_krakensdr_correlator_0_0, 1))
         self.connect((self.krakensdr_krakensdr_source_0, 0), (self.krakensdr_krakensdr_correlator_0_0_0, 0))

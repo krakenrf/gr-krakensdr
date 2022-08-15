@@ -81,9 +81,9 @@ documentation: |-
 
   Ensure that you use the same CPI size as what is set in the heimdall daq_chain_config.ini file.
 
-  Outputs a block of coherent IQ data for each channel. The block consists of CPI_size number of samples.
+  Outputs a vector of coherent IQ data for each channel. The vector consists of CPI_size number of samples.
 
-  You can use a Stream->Vector block with Vector Length = 1 and Num Items = CPI_size to convert into a GNU Radio vector.
+  You can use a Vector->Stream block with Vector Length = 1 and Num Items = CPI_size to convert into a stream if needed.
 
   NOTES: Heimdall uses the KrakenSDR RTL-SDR driver branch, ensure that your system is using this driver. Please consult the KrakenSDR documentation Wiki at https://www.github.com/krakenrf/krakensdr_docs
 
