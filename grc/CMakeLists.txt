@@ -7,5 +7,6 @@
 #
 install(FILES
     krakensdr_krakensdr_source.block.yml
-    krakensdr_krakensdr_correlator.block.yml DESTINATION share/gnuradio/grc/blocks
+    krakensdr_krakensdr_correlator.block.yml
+    krakensdr_doa_music.block.yml DESTINATION share/gnuradio/grc/blocks
 )

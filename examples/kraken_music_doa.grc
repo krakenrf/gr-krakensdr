@@ -1,0 +1,577 @@
+options:
+  parameters:
+    author: ''
+    catch_exceptions: 'True'
+    category: '[GRC Hier Blocks]'
+    cmake_opt: ''
+    comment: ''
+    copyright: ''
+    description: ''
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: qt_gui
+    hier_block_src_path: '.:'
+    id: kraken_music_doa
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: Not titled yet
+    window_size: (1000,1000)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 8]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: cpi_size
+  id: variable
+  parameters:
+    comment: ''
+    value: 2**20
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [184, 12]
+    rotation: 0
+    state: enabled
+- name: decimation
+  id: variable
+  parameters:
+    comment: ''
+    value: '128'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [296, 12.0]
+    rotation: 0
+    state: enabled
+- name: blocks_stream_to_vector_0
+  id: blocks_stream_to_vector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: cpi_size//decimation
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [744, 272.0]
+    rotation: 0
+    state: enabled
+- name: blocks_stream_to_vector_0_0
+  id: blocks_stream_to_vector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: cpi_size//decimation
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [744, 304.0]
+    rotation: 0
+    state: enabled
+- name: blocks_stream_to_vector_0_0_0
+  id: blocks_stream_to_vector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: cpi_size//decimation
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [744, 336.0]
+    rotation: 0
+    state: enabled
+- name: blocks_stream_to_vector_0_0_1
+  id: blocks_stream_to_vector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: cpi_size//decimation
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [744, 368.0]
+    rotation: 0
+    state: enabled
+- name: blocks_stream_to_vector_0_0_2
+  id: blocks_stream_to_vector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: cpi_size//decimation
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [744, 400.0]
+    rotation: 0
+    state: enabled
+- name: blocks_stream_to_vector_1
+  id: blocks_stream_to_vector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: cpi_size
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [288, 456.0]
+    rotation: 0
+    state: disabled
+- name: blocks_stream_to_vector_1_0
+  id: blocks_stream_to_vector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: cpi_size
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [288, 664.0]
+    rotation: 0
+    state: disabled
+- name: blocks_stream_to_vector_1_1
+  id: blocks_stream_to_vector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: cpi_size
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [288, 600.0]
+    rotation: 0
+    state: disabled
+- name: blocks_stream_to_vector_1_2
+  id: blocks_stream_to_vector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: cpi_size
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [288, 520.0]
+    rotation: 0
+    state: disabled
+- name: blocks_stream_to_vector_1_3
+  id: blocks_stream_to_vector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: cpi_size
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [288, 552.0]
+    rotation: 0
+    state: disabled
+- name: blocks_vector_to_stream_0
+  id: blocks_vector_to_stream
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: cpi_size
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [280, 272.0]
+    rotation: 0
+    state: enabled
+- name: blocks_vector_to_stream_0_0
+  id: blocks_vector_to_stream
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: cpi_size
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [280, 304.0]
+    rotation: 0
+    state: enabled
+- name: blocks_vector_to_stream_0_1
+  id: blocks_vector_to_stream
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: cpi_size
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [280, 336.0]
+    rotation: 0
+    state: enabled
+- name: blocks_vector_to_stream_0_2
+  id: blocks_vector_to_stream
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: cpi_size
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [280, 368.0]
+    rotation: 0
+    state: enabled
+- name: blocks_vector_to_stream_0_3
+  id: blocks_vector_to_stream
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: cpi_size
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [280, 400.0]
+    rotation: 0
+    state: enabled
+- name: fir_filter_xxx_0
+  id: fir_filter_xxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    decim: decimation
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_delay: '0'
+    taps: decimation*2
+    type: ccc
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [496, 196.0]
+    rotation: 0
+    state: enabled
+- name: fir_filter_xxx_0_0
+  id: fir_filter_xxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    decim: decimation
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_delay: '0'
+    taps: decimation*2
+    type: ccc
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [496, 260.0]
+    rotation: 0
+    state: enabled
+- name: fir_filter_xxx_0_0_0
+  id: fir_filter_xxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    decim: decimation
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_delay: '0'
+    taps: decimation*2
+    type: ccc
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [496, 324.0]
+    rotation: 0
+    state: enabled
+- name: fir_filter_xxx_0_0_1
+  id: fir_filter_xxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    decim: decimation
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_delay: '0'
+    taps: decimation*2
+    type: ccc
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [496, 388.0]
+    rotation: 0
+    state: enabled
+- name: fir_filter_xxx_0_0_2
+  id: fir_filter_xxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    decim: decimation
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_delay: '0'
+    taps: decimation*2
+    type: ccc
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [496, 452.0]
+    rotation: 0
+    state: enabled
+- name: krakensdr_doa_music_0
+  id: krakensdr_doa_music
+  parameters:
+    affinity: ''
+    alias: ''
+    array_type: '''UCA'''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_elements: '5'
+    spacing: '0.34'
+    vec_len: cpi_size//decimation
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [968, 272.0]
+    rotation: 0
+    state: enabled
+- name: krakensdr_krakensdr_source_0
+  id: krakensdr_krakensdr_source
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    cpi_size: cpi_size
+    ctrlPort: '5001'
+    debug: 'False'
+    freq: '416.588'
+    gain: '[40.2, 40.2, 40.2, 40.2, 40.2]'
+    ipAddr: 127.0.0.1
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    numChannels: '5'
+    port: '5000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [16, 272.0]
+    rotation: 0
+    state: true
+- name: qtgui_vector_sink_f_0
+  id: qtgui_vector_sink_f
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'True'
+    average: '1.0'
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    grid: 'False'
+    gui_hint: ''
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    legend: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '""'
+    nconnections: '1'
+    ref_level: '0'
+    showports: 'False'
+    update_time: '0.10'
+    vlen: '360'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    x_axis_label: '"x-Axis"'
+    x_start: '0'
+    x_step: '1.0'
+    x_units: '""'
+    y_axis_label: '"y-Axis"'
+    y_units: '""'
+    ymax: '10'
+    ymin: '-140'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1312, 308.0]
+    rotation: 0
+    state: enabled
+
+connections:
+- [blocks_stream_to_vector_0, '0', krakensdr_doa_music_0, '0']
+- [blocks_stream_to_vector_0_0, '0', krakensdr_doa_music_0, '1']
+- [blocks_stream_to_vector_0_0_0, '0', krakensdr_doa_music_0, '2']
+- [blocks_stream_to_vector_0_0_1, '0', krakensdr_doa_music_0, '3']
+- [blocks_stream_to_vector_0_0_2, '0', krakensdr_doa_music_0, '4']
+- [blocks_stream_to_vector_1, '0', krakensdr_doa_music_0, '0']
+- [blocks_stream_to_vector_1_0, '0', krakensdr_doa_music_0, '4']
+- [blocks_stream_to_vector_1_1, '0', krakensdr_doa_music_0, '3']
+- [blocks_stream_to_vector_1_2, '0', krakensdr_doa_music_0, '1']
+- [blocks_stream_to_vector_1_3, '0', krakensdr_doa_music_0, '2']
+- [blocks_vector_to_stream_0, '0', fir_filter_xxx_0, '0']
+- [blocks_vector_to_stream_0_0, '0', fir_filter_xxx_0_0, '0']
+- [blocks_vector_to_stream_0_1, '0', fir_filter_xxx_0_0_0, '0']
+- [blocks_vector_to_stream_0_2, '0', fir_filter_xxx_0_0_1, '0']
+- [blocks_vector_to_stream_0_3, '0', fir_filter_xxx_0_0_2, '0']
+- [fir_filter_xxx_0, '0', blocks_stream_to_vector_0, '0']
+- [fir_filter_xxx_0_0, '0', blocks_stream_to_vector_0_0, '0']
+- [fir_filter_xxx_0_0_0, '0', blocks_stream_to_vector_0_0_0, '0']
+- [fir_filter_xxx_0_0_1, '0', blocks_stream_to_vector_0_0_1, '0']
+- [fir_filter_xxx_0_0_2, '0', blocks_stream_to_vector_0_0_2, '0']
+- [krakensdr_doa_music_0, '0', qtgui_vector_sink_f_0, '0']
+- [krakensdr_krakensdr_source_0, '0', blocks_stream_to_vector_1, '0']
+- [krakensdr_krakensdr_source_0, '0', blocks_vector_to_stream_0, '0']
+- [krakensdr_krakensdr_source_0, '1', blocks_stream_to_vector_1_2, '0']
+- [krakensdr_krakensdr_source_0, '1', blocks_vector_to_stream_0_0, '0']
+- [krakensdr_krakensdr_source_0, '2', blocks_stream_to_vector_1_3, '0']
+- [krakensdr_krakensdr_source_0, '2', blocks_vector_to_stream_0_1, '0']
+- [krakensdr_krakensdr_source_0, '3', blocks_stream_to_vector_1_1, '0']
+- [krakensdr_krakensdr_source_0, '3', blocks_vector_to_stream_0_2, '0']
+- [krakensdr_krakensdr_source_0, '4', blocks_stream_to_vector_1_0, '0']
+- [krakensdr_krakensdr_source_0, '4', blocks_vector_to_stream_0_3, '0']
+
+metadata:
+  file_format: 1
+  grc_version: 3.10.3.0

@@ -53,22 +53,23 @@ class krakensdr_source(gr.sync_block):
 
 
     def work(self, input_items, output_items):
+            
         self.get_iq_online()
-
-        #print("iq samples size: " + str(np.shape(self.iq_samples)))
-
-        try:
-            #for n in range(self.numChannels):
-            #    for i in range(len(self.iq_samples[0,:])):
-            #        output_items[n][i] = self.iq_samples[n,i]
-            if self.iq_header.frame_type == self.iq_header.FRAME_TYPE_DATA:
-                for n in range(self.numChannels):
-                    output_items[n][:] = self.iq_samples[n,:]
-        except:
-            pass
-
+        
         if self.debug:
             self.iq_header.dump_header()
+
+        #print("iq samples size: " + str(np.shape(self.iq_samples)))
+        #print("output items: " + str(np.shape(output_items)))
+
+        #try:
+        if self.iq_header.frame_type == self.iq_header.FRAME_TYPE_DATA:
+            for n in range(self.numChannels):
+                output_items[n][0][:] = self.iq_samples[n,:]
+        #except:
+        #    print("excepted")
+
+        #print("len output items: " + str(len(output_items[0])))
 
         return len(output_items[0])
 
