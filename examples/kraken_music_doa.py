@@ -22,10 +22,10 @@ if __name__ == '__main__':
 
 from PyQt5 import Qt
 from gnuradio import qtgui
+from gnuradio.filter import firdes
 import sip
 from gnuradio import blocks
 from gnuradio import filter
-from gnuradio.filter import firdes
 from gnuradio import gr
 from gnuradio.fft import window
 import sys
@@ -81,45 +81,91 @@ class kraken_music_doa(gr.top_block, Qt.QWidget):
         ##################################################
         # Blocks
         ##################################################
-        self.qtgui_vector_sink_f_0 = qtgui.vector_sink_f(
-            360,
-            0,
-            1.0,
-            "x-Axis",
-            "y-Axis",
-            "",
-            1, # Number of inputs
+        self.qtgui_time_sink_x_0 = qtgui.time_sink_f(
+            360, #size
+            1000, #samp_rate
+            "", #name
+            1, #number of inputs
             None # parent
         )
-        self.qtgui_vector_sink_f_0.set_update_time(0.10)
-        self.qtgui_vector_sink_f_0.set_y_axis((-140), 10)
-        self.qtgui_vector_sink_f_0.enable_autoscale(True)
-        self.qtgui_vector_sink_f_0.enable_grid(False)
-        self.qtgui_vector_sink_f_0.set_x_axis_units("")
-        self.qtgui_vector_sink_f_0.set_y_axis_units("")
-        self.qtgui_vector_sink_f_0.set_ref_level(0)
+        self.qtgui_time_sink_x_0.set_update_time(0.10)
+        self.qtgui_time_sink_x_0.set_y_axis(-1, 1)
 
+        self.qtgui_time_sink_x_0.set_y_label('Amplitude', "")
+
+        self.qtgui_time_sink_x_0.enable_tags(True)
+        self.qtgui_time_sink_x_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, qtgui.TRIG_SLOPE_POS, 0.0, 0, 0, "")
+        self.qtgui_time_sink_x_0.enable_autoscale(True)
+        self.qtgui_time_sink_x_0.enable_grid(False)
+        self.qtgui_time_sink_x_0.enable_axis_labels(True)
+        self.qtgui_time_sink_x_0.enable_control_panel(False)
+        self.qtgui_time_sink_x_0.enable_stem_plot(False)
+
+
+        labels = ['Signal 1', 'Signal 2', 'Signal 3', 'Signal 4', 'Signal 5',
+            'Signal 6', 'Signal 7', 'Signal 8', 'Signal 9', 'Signal 10']
+        widths = [1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1]
+        colors = ['blue', 'red', 'green', 'black', 'cyan',
+            'magenta', 'yellow', 'dark red', 'dark green', 'dark blue']
+        alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
+            1.0, 1.0, 1.0, 1.0, 1.0]
+        styles = [1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1]
+        markers = [-1, -1, -1, -1, -1,
+            -1, -1, -1, -1, -1]
+
+
+        for i in range(1):
+            if len(labels[i]) == 0:
+                self.qtgui_time_sink_x_0.set_line_label(i, "Data {0}".format(i))
+            else:
+                self.qtgui_time_sink_x_0.set_line_label(i, labels[i])
+            self.qtgui_time_sink_x_0.set_line_width(i, widths[i])
+            self.qtgui_time_sink_x_0.set_line_color(i, colors[i])
+            self.qtgui_time_sink_x_0.set_line_style(i, styles[i])
+            self.qtgui_time_sink_x_0.set_line_marker(i, markers[i])
+            self.qtgui_time_sink_x_0.set_line_alpha(i, alphas[i])
+
+        self._qtgui_time_sink_x_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0.qwidget(), Qt.QWidget)
+        self.top_layout.addWidget(self._qtgui_time_sink_x_0_win)
+        self.qtgui_time_raster_sink_x_0 = qtgui.time_raster_sink_f(
+            1000,
+            256,
+            256,
+            [],
+            [],
+            "",
+            1,
+            None
+        )
+
+        self.qtgui_time_raster_sink_x_0.set_update_time(0.10)
+        self.qtgui_time_raster_sink_x_0.set_intensity_range((-1), 1)
+        self.qtgui_time_raster_sink_x_0.enable_grid(False)
+        self.qtgui_time_raster_sink_x_0.enable_axis_labels(True)
+        self.qtgui_time_raster_sink_x_0.set_x_label("")
+        self.qtgui_time_raster_sink_x_0.set_x_range(0.0, 0.0)
+        self.qtgui_time_raster_sink_x_0.set_y_label("")
+        self.qtgui_time_raster_sink_x_0.set_y_range(0.0, 0.0)
 
         labels = ['', '', '', '', '',
             '', '', '', '', '']
-        widths = [1, 1, 1, 1, 1,
-            1, 1, 1, 1, 1]
-        colors = ["blue", "red", "green", "black", "cyan",
-            "magenta", "yellow", "dark red", "dark green", "dark blue"]
+        colors = [0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0]
         alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
             1.0, 1.0, 1.0, 1.0, 1.0]
 
         for i in range(1):
             if len(labels[i]) == 0:
-                self.qtgui_vector_sink_f_0.set_line_label(i, "Data {0}".format(i))
+                self.qtgui_time_raster_sink_x_0.set_line_label(i, "Data {0}".format(i))
             else:
-                self.qtgui_vector_sink_f_0.set_line_label(i, labels[i])
-            self.qtgui_vector_sink_f_0.set_line_width(i, widths[i])
-            self.qtgui_vector_sink_f_0.set_line_color(i, colors[i])
-            self.qtgui_vector_sink_f_0.set_line_alpha(i, alphas[i])
+                self.qtgui_time_raster_sink_x_0.set_line_label(i, labels[i])
+            self.qtgui_time_raster_sink_x_0.set_color_map(i, colors[i])
+            self.qtgui_time_raster_sink_x_0.set_line_alpha(i, alphas[i])
 
-        self._qtgui_vector_sink_f_0_win = sip.wrapinstance(self.qtgui_vector_sink_f_0.qwidget(), Qt.QWidget)
-        self.top_layout.addWidget(self._qtgui_vector_sink_f_0_win)
+        self._qtgui_time_raster_sink_x_0_win = sip.wrapinstance(self.qtgui_time_raster_sink_x_0.qwidget(), Qt.QWidget)
+        self.top_layout.addWidget(self._qtgui_time_raster_sink_x_0_win)
         self.krakensdr_krakensdr_source_0 = krakensdr.krakensdr_source('127.0.0.1', 5000, 5001, cpi_size, 5, 416.588, [40.2, 40.2, 40.2, 40.2, 40.2], False)
         self.krakensdr_doa_music_0 = krakensdr.doa_music((cpi_size//decimation), 0.34, 5, 'UCA')
         self.fir_filter_xxx_0_0_2 = filter.fir_filter_ccc(decimation, [decimation*2])
@@ -133,6 +179,7 @@ class kraken_music_doa(gr.top_block, Qt.QWidget):
         self.fir_filter_xxx_0 = filter.fir_filter_ccc(decimation, [decimation*2])
         self.fir_filter_xxx_0.declare_sample_delay(0)
         self.blocks_vector_to_stream_0_3 = blocks.vector_to_stream(gr.sizeof_gr_complex*1, cpi_size)
+        self.blocks_vector_to_stream_0_2_0 = blocks.vector_to_stream(gr.sizeof_float*1, 360)
         self.blocks_vector_to_stream_0_2 = blocks.vector_to_stream(gr.sizeof_gr_complex*1, cpi_size)
         self.blocks_vector_to_stream_0_1 = blocks.vector_to_stream(gr.sizeof_gr_complex*1, cpi_size)
         self.blocks_vector_to_stream_0_0 = blocks.vector_to_stream(gr.sizeof_gr_complex*1, cpi_size)
@@ -156,13 +203,15 @@ class kraken_music_doa(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_vector_to_stream_0_0, 0), (self.fir_filter_xxx_0_0, 0))
         self.connect((self.blocks_vector_to_stream_0_1, 0), (self.fir_filter_xxx_0_0_0, 0))
         self.connect((self.blocks_vector_to_stream_0_2, 0), (self.fir_filter_xxx_0_0_1, 0))
+        self.connect((self.blocks_vector_to_stream_0_2_0, 0), (self.qtgui_time_raster_sink_x_0, 0))
+        self.connect((self.blocks_vector_to_stream_0_2_0, 0), (self.qtgui_time_sink_x_0, 0))
         self.connect((self.blocks_vector_to_stream_0_3, 0), (self.fir_filter_xxx_0_0_2, 0))
         self.connect((self.fir_filter_xxx_0, 0), (self.blocks_stream_to_vector_0, 0))
         self.connect((self.fir_filter_xxx_0_0, 0), (self.blocks_stream_to_vector_0_0, 0))
         self.connect((self.fir_filter_xxx_0_0_0, 0), (self.blocks_stream_to_vector_0_0_0, 0))
         self.connect((self.fir_filter_xxx_0_0_1, 0), (self.blocks_stream_to_vector_0_0_1, 0))
         self.connect((self.fir_filter_xxx_0_0_2, 0), (self.blocks_stream_to_vector_0_0_2, 0))
-        self.connect((self.krakensdr_doa_music_0, 0), (self.qtgui_vector_sink_f_0, 0))
+        self.connect((self.krakensdr_doa_music_0, 0), (self.blocks_vector_to_stream_0_2_0, 0))
         self.connect((self.krakensdr_krakensdr_source_0, 0), (self.blocks_vector_to_stream_0, 0))
         self.connect((self.krakensdr_krakensdr_source_0, 1), (self.blocks_vector_to_stream_0_0, 0))
         self.connect((self.krakensdr_krakensdr_source_0, 2), (self.blocks_vector_to_stream_0_1, 0))
