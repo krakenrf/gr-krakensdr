@@ -1,6 +1,0 @@
-# Hashes of file build rules.
-8c505ddf79cc33649eb39445b67675a5 CMakeFiles/uninstall
-c796e5ced329b7b25119e866b70c3232 python/krakensdr/CMakeFiles/copy_module_for_tests
-6e2861ed6803dfb7414a9a978a012411 python/krakensdr/CMakeFiles/pygen_python_krakensdr_3d705
-0858df7df4199dfdc7b3d26d07844d89 python/krakensdr/__init__.pyc
-c4a8c5adbd00a860f1c672cc25e7a5eb python/krakensdr/__init__.pyo
