@@ -22,7 +22,7 @@ parameters:
   dtype: real
   default: 433
 - id: array_dist
-  label: Array spacing (radius for UCA or interelement for ULA)
+  label: Array spacing [meters] (UCA - Radius,  ULA - Interelement)
   dtype: real
   default: 0.5
 - id: num_elements
@@ -58,6 +58,13 @@ outputs:
   dtype: float
   vlen: 360
 #  optional: ...
+
+documentation: |-
+  Calculates the MUSIC direction finding algorithm. Outputs a vector of 360 points, each one degree on a circle.
+  
+  Requires you enter frequency, so it can calculate the wavelength spacing multiplier from your input array size.
+  
+  For UCA arrays, input array size as a RADIUS (meters). For ULA input as interelement spacing.
 
 #  'file_format' specifies the version of the GRC yml format used in the file
 #  and should usually not be changed.

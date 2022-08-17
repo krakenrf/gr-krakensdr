@@ -52,12 +52,6 @@ parameters:
 #      * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
 #      * vlen (optional - data stream vector length. Default is 1)
 #      * optional (optional - set to 1 for optional inputs. Default is 0)
-#inputs:
-#- label: ...
-#  domain: ...
-#  dtype: ...
-#  vlen: ...
-#  optional: ...
 
 outputs:
 - label: ch_
@@ -75,11 +69,7 @@ documentation: |-
 
   Run heimdall first, then connect to it with this block. Heimdall handles all coherence calibration by itself, so you can treat data coming out of the KrakenSDR block as coherent.
 
-  Ensure that you use the same CPI size as what is set in the heimdall daq_chain_config.ini file.
-
-  Outputs a vector of coherent IQ data for each channel. The vector consists of CPI_size number of samples.
-
-  You can use a Vector->Stream block with Vector Length = 1 and Num Items = CPI_size to convert into a stream if needed.
+  Outputs coherent IQ data for each channel. 
 
   NOTES: Heimdall uses the KrakenSDR RTL-SDR driver branch, ensure that your system is using this driver. Please consult the KrakenSDR documentation Wiki at https://www.github.com/krakenrf/krakensdr_docs
 
