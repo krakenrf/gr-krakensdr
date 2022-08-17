@@ -87,96 +87,6 @@ blocks:
     coordinate: [184, 12]
     rotation: 0
     state: enabled
-- name: blocks_vector_to_stream_0
-  id: blocks_vector_to_stream
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    num_items: cpi_size
-    type: complex
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [264, 344.0]
-    rotation: 0
-    state: true
-- name: blocks_vector_to_stream_0_0
-  id: blocks_vector_to_stream
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    num_items: cpi_size
-    type: complex
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [264, 376.0]
-    rotation: 0
-    state: true
-- name: blocks_vector_to_stream_0_1
-  id: blocks_vector_to_stream
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    num_items: cpi_size
-    type: complex
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [264, 408.0]
-    rotation: 0
-    state: true
-- name: blocks_vector_to_stream_0_2
-  id: blocks_vector_to_stream
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    num_items: cpi_size
-    type: complex
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [264, 440.0]
-    rotation: 0
-    state: true
-- name: blocks_vector_to_stream_0_3
-  id: blocks_vector_to_stream
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    num_items: cpi_size
-    type: complex
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [264, 472.0]
-    rotation: 0
-    state: true
 - name: krakensdr_krakensdr_source_0
   id: krakensdr_krakensdr_source
   parameters:
@@ -347,16 +257,11 @@ blocks:
     state: true
 
 connections:
-- [blocks_vector_to_stream_0, '0', qtgui_sink_x_0, '0']
-- [blocks_vector_to_stream_0_0, '0', qtgui_sink_x_0_0, '0']
-- [blocks_vector_to_stream_0_1, '0', qtgui_sink_x_0_0_0, '0']
-- [blocks_vector_to_stream_0_2, '0', qtgui_sink_x_0_0_0_0, '0']
-- [blocks_vector_to_stream_0_3, '0', qtgui_sink_x_0_0_0_0_0, '0']
-- [krakensdr_krakensdr_source_0, '0', blocks_vector_to_stream_0, '0']
-- [krakensdr_krakensdr_source_0, '1', blocks_vector_to_stream_0_0, '0']
-- [krakensdr_krakensdr_source_0, '2', blocks_vector_to_stream_0_1, '0']
-- [krakensdr_krakensdr_source_0, '3', blocks_vector_to_stream_0_2, '0']
-- [krakensdr_krakensdr_source_0, '4', blocks_vector_to_stream_0_3, '0']
+- [krakensdr_krakensdr_source_0, '0', qtgui_sink_x_0, '0']
+- [krakensdr_krakensdr_source_0, '1', qtgui_sink_x_0_0, '0']
+- [krakensdr_krakensdr_source_0, '2', qtgui_sink_x_0_0_0, '0']
+- [krakensdr_krakensdr_source_0, '3', qtgui_sink_x_0_0_0_0, '0']
+- [krakensdr_krakensdr_source_0, '4', qtgui_sink_x_0_0_0_0_0, '0']
 
 metadata:
   file_format: 1

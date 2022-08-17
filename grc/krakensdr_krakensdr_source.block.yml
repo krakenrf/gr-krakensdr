@@ -1,10 +1,10 @@
 id: krakensdr_krakensdr_source
-label: Krakensdr Source
+label: KrakenSDR Source
 category: '[KrakenSDR]'
 
 templates:
   imports: from gnuradio import krakensdr
-  make: krakensdr.krakensdr_source(${ipAddr}, ${port}, ${ctrlPort}, ${cpi_size}, ${numChannels}, ${freq}, ${gain}, ${debug})
+  make: krakensdr.krakensdr_source(${ipAddr}, ${port}, ${ctrlPort}, ${numChannels}, ${freq}, ${gain}, ${debug})
   callbacks:
   - set_gain(${gain})
   - set_freq(${freq})
@@ -28,10 +28,6 @@ parameters:
   label: Heimdall Control Port
   dtype: int
   default: 5001
-- id: cpi_size
-  label: Heimdall CPI Size
-  dtype: int
-  default: 1048576
 - id: numChannels
   label: Number of channels
   dtype: int
@@ -67,7 +63,7 @@ outputs:
 - label: ch_
   domain: stream
   dtype: complex
-  vlen: ${cpi_size}
+#  vlen: ${cpi_size}
   multiplicity: ${ numChannels }
 
 asserts:

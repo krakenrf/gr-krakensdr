@@ -73,6 +73,96 @@ blocks:
     coordinate: [184, 12.0]
     rotation: 0
     state: enabled
+- name: blocks_stream_to_vector_0
+  id: blocks_stream_to_vector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: vec_len
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [312, 304.0]
+    rotation: 0
+    state: true
+- name: blocks_stream_to_vector_0_0
+  id: blocks_stream_to_vector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: vec_len
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [312, 336.0]
+    rotation: 0
+    state: true
+- name: blocks_stream_to_vector_0_0_0
+  id: blocks_stream_to_vector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: vec_len
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [312, 440.0]
+    rotation: 0
+    state: true
+- name: blocks_stream_to_vector_0_0_1
+  id: blocks_stream_to_vector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: vec_len
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [312, 544.0]
+    rotation: 0
+    state: true
+- name: blocks_stream_to_vector_0_0_2
+  id: blocks_stream_to_vector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_items: vec_len
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [312, 648.0]
+    rotation: 0
+    state: true
 - name: krakensdr_krakensdr_correlator_0
   id: krakensdr_krakensdr_correlator
   parameters:
@@ -87,7 +177,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [376, 304.0]
+    coordinate: [592, 304.0]
     rotation: 0
     state: true
 - name: krakensdr_krakensdr_correlator_0_0
@@ -104,7 +194,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [376, 408.0]
+    coordinate: [592, 408.0]
     rotation: 0
     state: true
 - name: krakensdr_krakensdr_correlator_0_0_0
@@ -121,7 +211,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [376, 512.0]
+    coordinate: [592, 512.0]
     rotation: 0
     state: true
 - name: krakensdr_krakensdr_correlator_0_0_1
@@ -138,7 +228,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [376, 616.0]
+    coordinate: [592, 616.0]
     rotation: 0
     state: true
 - name: krakensdr_krakensdr_source_0
@@ -161,7 +251,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [32, 416.0]
+    coordinate: [0, 424.0]
     rotation: 0
     state: true
 - name: note_0
@@ -238,7 +328,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [688, 164.0]
+    coordinate: [904, 164.0]
     rotation: 0
     state: true
 - name: phase_02
@@ -301,7 +391,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [688, 388.0]
+    coordinate: [904, 388.0]
     rotation: 0
     state: true
 - name: phase_03
@@ -364,7 +454,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [688, 604.0]
+    coordinate: [904, 604.0]
     rotation: 0
     state: true
 - name: phase_04
@@ -427,7 +517,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [688, 820.0]
+    coordinate: [904, 820.0]
     rotation: 0
     state: true
 - name: qtgui_vector_sink_f_0
@@ -490,7 +580,7 @@ blocks:
     width8: '1'
     width9: '1'
     x_axis_label: '"x-Axis"'
-    x_start: '0'
+    x_start: -fft_cut//2
     x_step: '1.0'
     x_units: '""'
     y_axis_label: '"y-Axis"'
@@ -501,7 +591,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [688, 60.0]
+    coordinate: [904, 60.0]
     rotation: 0
     state: true
 - name: qtgui_vector_sink_f_0_0
@@ -564,7 +654,7 @@ blocks:
     width8: '1'
     width9: '1'
     x_axis_label: '"x-Axis"'
-    x_start: '0'
+    x_start: -fft_cut//2
     x_step: '1.0'
     x_units: '""'
     y_axis_label: '"y-Axis"'
@@ -575,7 +665,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [688, 284.0]
+    coordinate: [904, 284.0]
     rotation: 0
     state: true
 - name: qtgui_vector_sink_f_0_0_0
@@ -638,7 +728,7 @@ blocks:
     width8: '1'
     width9: '1'
     x_axis_label: '"x-Axis"'
-    x_start: '0'
+    x_start: -fft_cut//2
     x_step: '1.0'
     x_units: '""'
     y_axis_label: '"y-Axis"'
@@ -649,7 +739,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [688, 500.0]
+    coordinate: [904, 500.0]
     rotation: 0
     state: true
 - name: qtgui_vector_sink_f_0_0_0_0
@@ -712,7 +802,7 @@ blocks:
     width8: '1'
     width9: '1'
     x_axis_label: '"x-Axis"'
-    x_start: '0'
+    x_start: -fft_cut//2
     x_step: '1.0'
     x_units: '""'
     y_axis_label: '"y-Axis"'
@@ -723,11 +813,19 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [688, 716.0]
+    coordinate: [904, 716.0]
     rotation: 0
     state: true
 
 connections:
+- [blocks_stream_to_vector_0, '0', krakensdr_krakensdr_correlator_0, '0']
+- [blocks_stream_to_vector_0, '0', krakensdr_krakensdr_correlator_0_0, '0']
+- [blocks_stream_to_vector_0, '0', krakensdr_krakensdr_correlator_0_0_0, '0']
+- [blocks_stream_to_vector_0, '0', krakensdr_krakensdr_correlator_0_0_1, '0']
+- [blocks_stream_to_vector_0_0, '0', krakensdr_krakensdr_correlator_0, '1']
+- [blocks_stream_to_vector_0_0_0, '0', krakensdr_krakensdr_correlator_0_0, '1']
+- [blocks_stream_to_vector_0_0_1, '0', krakensdr_krakensdr_correlator_0_0_0, '1']
+- [blocks_stream_to_vector_0_0_2, '0', krakensdr_krakensdr_correlator_0_0_1, '1']
 - [krakensdr_krakensdr_correlator_0, '0', qtgui_vector_sink_f_0, '0']
 - [krakensdr_krakensdr_correlator_0, '1', phase_01, '0']
 - [krakensdr_krakensdr_correlator_0_0, '0', qtgui_vector_sink_f_0_0, '0']
@@ -736,14 +834,11 @@ connections:
 - [krakensdr_krakensdr_correlator_0_0_0, '1', phase_03, '0']
 - [krakensdr_krakensdr_correlator_0_0_1, '0', qtgui_vector_sink_f_0_0_0_0, '0']
 - [krakensdr_krakensdr_correlator_0_0_1, '1', phase_04, '0']
-- [krakensdr_krakensdr_source_0, '0', krakensdr_krakensdr_correlator_0, '0']
-- [krakensdr_krakensdr_source_0, '0', krakensdr_krakensdr_correlator_0_0, '0']
-- [krakensdr_krakensdr_source_0, '0', krakensdr_krakensdr_correlator_0_0_0, '0']
-- [krakensdr_krakensdr_source_0, '0', krakensdr_krakensdr_correlator_0_0_1, '0']
-- [krakensdr_krakensdr_source_0, '1', krakensdr_krakensdr_correlator_0, '1']
-- [krakensdr_krakensdr_source_0, '2', krakensdr_krakensdr_correlator_0_0, '1']
-- [krakensdr_krakensdr_source_0, '3', krakensdr_krakensdr_correlator_0_0_0, '1']
-- [krakensdr_krakensdr_source_0, '4', krakensdr_krakensdr_correlator_0_0_1, '1']
+- [krakensdr_krakensdr_source_0, '0', blocks_stream_to_vector_0, '0']
+- [krakensdr_krakensdr_source_0, '1', blocks_stream_to_vector_0_0, '0']
+- [krakensdr_krakensdr_source_0, '2', blocks_stream_to_vector_0_0_0, '0']
+- [krakensdr_krakensdr_source_0, '3', blocks_stream_to_vector_0_0_1, '0']
+- [krakensdr_krakensdr_source_0, '4', blocks_stream_to_vector_0_0_2, '0']
 
 metadata:
   file_format: 1

@@ -25,7 +25,6 @@ from gnuradio import eng_notation
 from gnuradio import qtgui
 from gnuradio.filter import firdes
 import sip
-from gnuradio import blocks
 from gnuradio import gr
 from gnuradio.fft import window
 import sys
@@ -214,27 +213,17 @@ class kraken_fft_display(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(0, 1):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self.krakensdr_krakensdr_source_0 = krakensdr.krakensdr_source('127.0.0.1', 5000, 5001, 1048576, 5, freq, [gain, gain, gain, gain, gain], False)
-        self.blocks_vector_to_stream_0_3 = blocks.vector_to_stream(gr.sizeof_gr_complex*1, cpi_size)
-        self.blocks_vector_to_stream_0_2 = blocks.vector_to_stream(gr.sizeof_gr_complex*1, cpi_size)
-        self.blocks_vector_to_stream_0_1 = blocks.vector_to_stream(gr.sizeof_gr_complex*1, cpi_size)
-        self.blocks_vector_to_stream_0_0 = blocks.vector_to_stream(gr.sizeof_gr_complex*1, cpi_size)
-        self.blocks_vector_to_stream_0 = blocks.vector_to_stream(gr.sizeof_gr_complex*1, cpi_size)
+        self.krakensdr_krakensdr_source_0 = krakensdr.krakensdr_source('127.0.0.1', 5000, 5001, 5, freq, [gain, gain, gain, gain, gain], False)
 
 
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.blocks_vector_to_stream_0, 0), (self.qtgui_sink_x_0, 0))
-        self.connect((self.blocks_vector_to_stream_0_0, 0), (self.qtgui_sink_x_0_0, 0))
-        self.connect((self.blocks_vector_to_stream_0_1, 0), (self.qtgui_sink_x_0_0_0, 0))
-        self.connect((self.blocks_vector_to_stream_0_2, 0), (self.qtgui_sink_x_0_0_0_0, 0))
-        self.connect((self.blocks_vector_to_stream_0_3, 0), (self.qtgui_sink_x_0_0_0_0_0, 0))
-        self.connect((self.krakensdr_krakensdr_source_0, 0), (self.blocks_vector_to_stream_0, 0))
-        self.connect((self.krakensdr_krakensdr_source_0, 1), (self.blocks_vector_to_stream_0_0, 0))
-        self.connect((self.krakensdr_krakensdr_source_0, 2), (self.blocks_vector_to_stream_0_1, 0))
-        self.connect((self.krakensdr_krakensdr_source_0, 3), (self.blocks_vector_to_stream_0_2, 0))
-        self.connect((self.krakensdr_krakensdr_source_0, 4), (self.blocks_vector_to_stream_0_3, 0))
+        self.connect((self.krakensdr_krakensdr_source_0, 0), (self.qtgui_sink_x_0, 0))
+        self.connect((self.krakensdr_krakensdr_source_0, 1), (self.qtgui_sink_x_0_0, 0))
+        self.connect((self.krakensdr_krakensdr_source_0, 2), (self.qtgui_sink_x_0_0_0, 0))
+        self.connect((self.krakensdr_krakensdr_source_0, 3), (self.qtgui_sink_x_0_0_0_0, 0))
+        self.connect((self.krakensdr_krakensdr_source_0, 4), (self.qtgui_sink_x_0_0_0_0_0, 0))
 
 
     def closeEvent(self, event):

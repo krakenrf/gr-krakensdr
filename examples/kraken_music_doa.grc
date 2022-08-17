@@ -57,6 +57,18 @@ blocks:
     coordinate: [296, 12.0]
     rotation: 0
     state: enabled
+- name: samp_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: '2400000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [400, 12.0]
+    rotation: 0
+    state: enabled
 - name: blocks_stream_to_vector_0
   id: blocks_stream_to_vector
   parameters:
@@ -72,7 +84,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [744, 272.0]
+    coordinate: [592, 272.0]
     rotation: 0
     state: enabled
 - name: blocks_stream_to_vector_0_0
@@ -90,7 +102,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [744, 304.0]
+    coordinate: [592, 304.0]
     rotation: 0
     state: enabled
 - name: blocks_stream_to_vector_0_0_0
@@ -108,7 +120,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [744, 336.0]
+    coordinate: [592, 336.0]
     rotation: 0
     state: enabled
 - name: blocks_stream_to_vector_0_0_1
@@ -126,7 +138,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [744, 368.0]
+    coordinate: [592, 368.0]
     rotation: 0
     state: enabled
 - name: blocks_stream_to_vector_0_0_2
@@ -144,7 +156,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [744, 400.0]
+    coordinate: [592, 400.0]
     rotation: 0
     state: enabled
 - name: blocks_stream_to_vector_1
@@ -237,78 +249,6 @@ blocks:
     coordinate: [288, 552.0]
     rotation: 0
     state: disabled
-- name: blocks_vector_to_stream_0
-  id: blocks_vector_to_stream
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    num_items: cpi_size
-    type: complex
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [280, 272.0]
-    rotation: 0
-    state: enabled
-- name: blocks_vector_to_stream_0_0
-  id: blocks_vector_to_stream
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    num_items: cpi_size
-    type: complex
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [280, 304.0]
-    rotation: 0
-    state: enabled
-- name: blocks_vector_to_stream_0_1
-  id: blocks_vector_to_stream
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    num_items: cpi_size
-    type: complex
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [280, 336.0]
-    rotation: 0
-    state: enabled
-- name: blocks_vector_to_stream_0_2
-  id: blocks_vector_to_stream
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    num_items: cpi_size
-    type: complex
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [280, 368.0]
-    rotation: 0
-    state: enabled
 - name: blocks_vector_to_stream_0_2_0
   id: blocks_vector_to_stream
   parameters:
@@ -324,25 +264,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1256, 336.0]
-    rotation: 0
-    state: enabled
-- name: blocks_vector_to_stream_0_3
-  id: blocks_vector_to_stream
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    num_items: cpi_size
-    type: complex
-    vlen: '1'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [280, 400.0]
+    coordinate: [1104, 336.0]
     rotation: 0
     state: enabled
 - name: fir_filter_xxx_0
@@ -355,13 +277,13 @@ blocks:
     maxoutbuf: '0'
     minoutbuf: '0'
     samp_delay: '0'
-    taps: decimation*2
+    taps: decimation*5
     type: ccc
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [496, 196.0]
+    coordinate: [344, 196.0]
     rotation: 0
     state: enabled
 - name: fir_filter_xxx_0_0
@@ -374,13 +296,13 @@ blocks:
     maxoutbuf: '0'
     minoutbuf: '0'
     samp_delay: '0'
-    taps: decimation*2
+    taps: decimation*5
     type: ccc
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [496, 260.0]
+    coordinate: [344, 260.0]
     rotation: 0
     state: enabled
 - name: fir_filter_xxx_0_0_0
@@ -393,13 +315,13 @@ blocks:
     maxoutbuf: '0'
     minoutbuf: '0'
     samp_delay: '0'
-    taps: decimation*2
+    taps: decimation*5
     type: ccc
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [496, 324.0]
+    coordinate: [344, 324.0]
     rotation: 0
     state: enabled
 - name: fir_filter_xxx_0_0_1
@@ -412,13 +334,13 @@ blocks:
     maxoutbuf: '0'
     minoutbuf: '0'
     samp_delay: '0'
-    taps: decimation*2
+    taps: decimation*5
     type: ccc
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [496, 388.0]
+    coordinate: [344, 388.0]
     rotation: 0
     state: enabled
 - name: fir_filter_xxx_0_0_2
@@ -431,13 +353,13 @@ blocks:
     maxoutbuf: '0'
     minoutbuf: '0'
     samp_delay: '0'
-    taps: decimation*2
+    taps: decimation*5
     type: ccc
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [496, 452.0]
+    coordinate: [344, 452.0]
     rotation: 0
     state: enabled
 - name: krakensdr_doa_music_0
@@ -456,7 +378,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [968, 272.0]
+    coordinate: [816, 272.0]
     rotation: 0
     state: enabled
 - name: krakensdr_krakensdr_source_0
@@ -465,7 +387,6 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    cpi_size: cpi_size
     ctrlPort: '5001'
     debug: 'False'
     freq: '416.588'
@@ -480,6 +401,87 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [16, 272.0]
+    rotation: 0
+    state: true
+- name: qtgui_freq_sink_x_0
+  id: qtgui_freq_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'True'
+    average: '1.0'
+    axislabels: 'True'
+    bw: samp_rate//decimation
+    color1: '"blue"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    ctrlpanel: 'False'
+    fc: '0'
+    fftsize: '2048'
+    freqhalf: 'True'
+    grid: 'False'
+    gui_hint: ''
+    label: Relative Gain
+    label1: ''
+    label10: ''''''
+    label2: ''''''
+    label3: ''''''
+    label4: ''''''
+    label5: ''''''
+    label6: ''''''
+    label7: ''''''
+    label8: ''''''
+    label9: ''''''
+    legend: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: CH_0 Decimated FFT
+    nconnections: '1'
+    norm_window: 'False'
+    showports: 'False'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_tag: '""'
+    type: complex
+    units: dB
+    update_time: '0.1'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    wintype: window.WIN_BLACKMAN_hARRIS
+    ymax: '10'
+    ymin: '-60'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [664, 44.0]
     rotation: 0
     state: true
 - name: qtgui_time_sink_x_0
@@ -535,7 +537,7 @@ blocks:
     marker7: '-1'
     marker8: '-1'
     marker9: '-1'
-    name: '""'
+    name: DOA Graph
     nconnections: '1'
     size: '360'
     srate: '1000'
@@ -576,7 +578,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1432, 316.0]
+    coordinate: [1280, 308.0]
     rotation: 0
     state: true
 
@@ -591,28 +593,24 @@ connections:
 - [blocks_stream_to_vector_1_1, '0', krakensdr_doa_music_0, '3']
 - [blocks_stream_to_vector_1_2, '0', krakensdr_doa_music_0, '1']
 - [blocks_stream_to_vector_1_3, '0', krakensdr_doa_music_0, '2']
-- [blocks_vector_to_stream_0, '0', fir_filter_xxx_0, '0']
-- [blocks_vector_to_stream_0_0, '0', fir_filter_xxx_0_0, '0']
-- [blocks_vector_to_stream_0_1, '0', fir_filter_xxx_0_0_0, '0']
-- [blocks_vector_to_stream_0_2, '0', fir_filter_xxx_0_0_1, '0']
 - [blocks_vector_to_stream_0_2_0, '0', qtgui_time_sink_x_0, '0']
-- [blocks_vector_to_stream_0_3, '0', fir_filter_xxx_0_0_2, '0']
 - [fir_filter_xxx_0, '0', blocks_stream_to_vector_0, '0']
+- [fir_filter_xxx_0, '0', qtgui_freq_sink_x_0, '0']
 - [fir_filter_xxx_0_0, '0', blocks_stream_to_vector_0_0, '0']
 - [fir_filter_xxx_0_0_0, '0', blocks_stream_to_vector_0_0_0, '0']
 - [fir_filter_xxx_0_0_1, '0', blocks_stream_to_vector_0_0_1, '0']
 - [fir_filter_xxx_0_0_2, '0', blocks_stream_to_vector_0_0_2, '0']
 - [krakensdr_doa_music_0, '0', blocks_vector_to_stream_0_2_0, '0']
 - [krakensdr_krakensdr_source_0, '0', blocks_stream_to_vector_1, '0']
-- [krakensdr_krakensdr_source_0, '0', blocks_vector_to_stream_0, '0']
+- [krakensdr_krakensdr_source_0, '0', fir_filter_xxx_0, '0']
 - [krakensdr_krakensdr_source_0, '1', blocks_stream_to_vector_1_2, '0']
-- [krakensdr_krakensdr_source_0, '1', blocks_vector_to_stream_0_0, '0']
+- [krakensdr_krakensdr_source_0, '1', fir_filter_xxx_0_0, '0']
 - [krakensdr_krakensdr_source_0, '2', blocks_stream_to_vector_1_3, '0']
-- [krakensdr_krakensdr_source_0, '2', blocks_vector_to_stream_0_1, '0']
+- [krakensdr_krakensdr_source_0, '2', fir_filter_xxx_0_0_0, '0']
 - [krakensdr_krakensdr_source_0, '3', blocks_stream_to_vector_1_1, '0']
-- [krakensdr_krakensdr_source_0, '3', blocks_vector_to_stream_0_2, '0']
+- [krakensdr_krakensdr_source_0, '3', fir_filter_xxx_0_0_1, '0']
 - [krakensdr_krakensdr_source_0, '4', blocks_stream_to_vector_1_0, '0']
-- [krakensdr_krakensdr_source_0, '4', blocks_vector_to_stream_0_3, '0']
+- [krakensdr_krakensdr_source_0, '4', fir_filter_xxx_0_0_2, '0']
 
 metadata:
   file_format: 1

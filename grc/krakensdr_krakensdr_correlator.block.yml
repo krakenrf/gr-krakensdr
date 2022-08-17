@@ -1,5 +1,5 @@
 id: krakensdr_krakensdr_correlator
-label: Krakensdr Correlator
+label: KrakenSDR Cross Correlator
 category: '[KrakenSDR]'
 
 templates:

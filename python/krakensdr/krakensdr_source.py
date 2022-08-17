@@ -10,6 +10,10 @@
 import numpy as np
 import socket
 import _thread
+import time
+import queue
+#from multiprocessing import Queue
+from threading import Thread
 from threading import Lock
 from gnuradio import gr
 
@@ -20,16 +24,16 @@ class krakensdr_source(gr.sync_block):
     """
     docstring for block krakensdr_source
     """
-    def __init__(self, ipAddr="127.0.0.1",port=5000, ctrlPort = 5001, cpi_size=2**20,numChannels=5,freq=416.588,gain=[10.0], debug=False):
+    def __init__(self, ipAddr="127.0.0.1",port=5000, ctrlPort = 5001,numChannels=5,freq=416.588,gain=[10.0], debug=False):
         gr.sync_block.__init__(self,
             name="KrakenSDR Source",
             in_sig=None,
-            out_sig=[(np.complex64, cpi_size)] * numChannels)
+            out_sig=[np.complex64] * numChannels)
+            #out_sig=[(np.complex64, cpi_size)] * numChannels)
 
-        #self.set_min_output_buffer(cpi_size)
         self.valid_gains = [0, 0.9, 1.4, 2.7, 3.7, 7.7, 8.7, 12.5, 14.4, 15.7, 16.6, 19.7, 20.7, 22.9, 25.4, 28.0, 29.7, 32.8, 33.8, 36.4, 37.2, 38.6, 40.2, 42.1, 43.4, 43.9, 44.5, 48.0, 49.6]
 
-        self.cpi_size = cpi_size
+
         self.ipAddr = ipAddr
         self.port = port
         self.ctrlPort = ctrlPort
@@ -49,31 +53,94 @@ class krakensdr_source(gr.sync_block):
         self.ctr_iface_port = self.ctrlPort
         self.ctr_iface_thread_lock = Lock() # Used to synchronize the operation of the ctr_iface thread
 
-        self.iq_samples = None
-
-
-    def work(self, input_items, output_items):
-            
+        # Init cpi_len from heimdall header. Sometimes cpi_len is initially zero. If so, loop until we get a non-zero value
         self.get_iq_online()
+        while self.iq_header.cpi_length == 0: 
+            self.get_iq_online()
+            
+        self.cpi_len = self.iq_header.cpi_length
+        self.total_fetched = self.iq_header.cpi_length
+
+        self.iq_samples = None
+        self.iq_sample_queue = queue.Queue(10)
         
-        if self.debug:
-            self.iq_header.dump_header()
+        self.stop_threads = False
+        self.buffer_thread = Thread(target = self.buffer_iq_samples)
+        self.buffer_thread.start()
 
-        #print("iq samples size: " + str(np.shape(self.iq_samples)))
-        #print("output items: " + str(np.shape(output_items)))
+    '''
+    Continuously receive sample frames from heimdall and put into a buffer.
+    Drops frames if buffer is full because downstream DSP was too slow.
+    '''
+    
+    def buffer_iq_samples(self):
+        while(True):
 
-        #try:
-        if self.iq_header.frame_type == self.iq_header.FRAME_TYPE_DATA:
+            if self.debug:
+                self.iq_header.dump_header()
+                
+            if self.stop_threads: # Stop thread on close
+                break
+                
+            iq_samples = self.get_iq_online()
+
+            try:
+                if self.iq_header.frame_type == self.iq_header.FRAME_TYPE_DATA: # Only output DATA frames, not calibration frames
+                    self.iq_sample_queue.put_nowait(iq_samples)
+            except Exception as e:
+                print("Failed to put IQ Samples into the Queue")
+                print("Exception: " + str(e))
+    
+    
+    '''
+    Work function stream implementation.
+    Gets IQ samples array from the buffer Queue, and outputs the number of items requested by the scheduler.
+    The work function repeats until all IQ samples have been output.
+    Then it requests a new IQ samples array from the buffer queue and starts outputting again.
+    '''
+    def work(self, input_items, output_items):
+
+        # We need to fetch a new iq_samples buffer    
+        if self.total_fetched == self.cpi_len:   
+            '''
+            # Old non threaded way
+            self.iq_samples = self.get_iq_online()
+
+            if self.iq_header.frame_type != self.iq_header.FRAME_TYPE_DATA:
+                print("Not a data frame, skipping")
+                return 0
+            '''
+            
+            #self.iq_samples = np.empty((self.numChannels, self.iq_header.cpi_length), dtype=np.complex64)
+            try:
+                self.iq_samples = self.iq_sample_queue.get(True, 3) # Block until samples are ready
+            except Exception as e:
+                print("Failed to get IQ Samples")
+                print("Exception: " + str(e))
+                return 0
+
+            self.total_fetched = 0
+
+        fetch_left = self.cpi_len - self.total_fetched # How much of the iq_samples buffer is left to stream out
+        output_items_req = len(output_items[0]) # Scheduler requests this many items out
+        output_items_now = min(output_items_req, fetch_left) # We will output this many. Either the requested amount, or if we have less.
+
+        try:
             for n in range(self.numChannels):
-                output_items[n][0][:] = self.iq_samples[n,:]
-        #except:
-        #    print("excepted")
+                # Only write the section of iq_samples that we left to outputting
+                output_items[n][0:output_items_now] = self.iq_samples[n,self.total_fetched:self.total_fetched + output_items_now]
+        except Exception as e:
+                print("Failed to write output_items")
+                print("Exception: " + str(e))
+                return 0
 
-        #print("len output items: " + str(len(output_items[0])))
+        self.total_fetched = self.total_fetched + output_items_now
 
-        return len(output_items[0])
+        return output_items_now #Output number of items
 
     def stop(self):
+        self.stop_threads = True
+        self.buffer_thread.join()
         self.eth_close()
         return True
 
@@ -194,8 +261,6 @@ class krakensdr_source(gr.sync_block):
 
             gain_list= [int(i * 10) for i in gain]
 
-            print("THE GAINS: " + str(gain_list))
-
             gain_bytes=pack("I"*self.numChannels, *gain_list)
             msg_bytes=(cmd.encode()+gain_bytes+bytearray(128-(self.numChannels+1)*4))
             try:
@@ -218,7 +283,8 @@ class krakensdr_source(gr.sync_block):
                 return -1
 
         self.socket_inst.sendall(str.encode("IQDownload")) # Send iq request command
-        self.iq_samples = self.receive_iq_frame()
+        #self.iq_samples = self.receive_iq_frame()
+        return self.receive_iq_frame()
 
     def receive_iq_frame(self):
         """

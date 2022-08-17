@@ -25,6 +25,7 @@ from PyQt5 import Qt
 from gnuradio import eng_notation
 from gnuradio import qtgui
 import sip
+from gnuradio import blocks
 from gnuradio import gr
 from gnuradio.filter import firdes
 from gnuradio.fft import window
@@ -90,7 +91,7 @@ class kraken_corr_test(gr.top_block, Qt.QWidget):
         self.top_layout.addWidget(self._freq_tool_bar)
         self.qtgui_vector_sink_f_0_0_0_0 = qtgui.vector_sink_f(
             fft_cut,
-            0,
+            (-fft_cut//2),
             1.0,
             "x-Axis",
             "y-Axis",
@@ -129,7 +130,7 @@ class kraken_corr_test(gr.top_block, Qt.QWidget):
         self.top_layout.addWidget(self._qtgui_vector_sink_f_0_0_0_0_win)
         self.qtgui_vector_sink_f_0_0_0 = qtgui.vector_sink_f(
             fft_cut,
-            0,
+            (-fft_cut//2),
             1.0,
             "x-Axis",
             "y-Axis",
@@ -168,7 +169,7 @@ class kraken_corr_test(gr.top_block, Qt.QWidget):
         self.top_layout.addWidget(self._qtgui_vector_sink_f_0_0_0_win)
         self.qtgui_vector_sink_f_0_0 = qtgui.vector_sink_f(
             fft_cut,
-            0,
+            (-fft_cut//2),
             1.0,
             "x-Axis",
             "y-Axis",
@@ -207,7 +208,7 @@ class kraken_corr_test(gr.top_block, Qt.QWidget):
         self.top_layout.addWidget(self._qtgui_vector_sink_f_0_0_win)
         self.qtgui_vector_sink_f_0 = qtgui.vector_sink_f(
             fft_cut,
-            0,
+            (-fft_cut//2),
             1.0,
             "x-Axis",
             "y-Axis",
@@ -376,16 +377,29 @@ class kraken_corr_test(gr.top_block, Qt.QWidget):
         self.phase_01.enable_autoscale(False)
         self._phase_01_win = sip.wrapinstance(self.phase_01.qwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._phase_01_win)
-        self.krakensdr_krakensdr_source_0 = krakensdr.krakensdr_source('127.0.0.1', 5000, 5001, 1048576, 5, freq, [30, 30, 30, 30, 30], False)
+        self.krakensdr_krakensdr_source_0 = krakensdr.krakensdr_source('127.0.0.1', 5000, 5001, 5, freq, [30, 30, 30, 30, 30], False)
         self.krakensdr_krakensdr_correlator_0_0_1 = krakensdr.krakensdr_correlator(vec_len, fft_cut)
         self.krakensdr_krakensdr_correlator_0_0_0 = krakensdr.krakensdr_correlator(vec_len, fft_cut)
         self.krakensdr_krakensdr_correlator_0_0 = krakensdr.krakensdr_correlator(vec_len, fft_cut)
         self.krakensdr_krakensdr_correlator_0 = krakensdr.krakensdr_correlator(vec_len, fft_cut)
+        self.blocks_stream_to_vector_0_0_2 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, vec_len)
+        self.blocks_stream_to_vector_0_0_1 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, vec_len)
+        self.blocks_stream_to_vector_0_0_0 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, vec_len)
+        self.blocks_stream_to_vector_0_0 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, vec_len)
+        self.blocks_stream_to_vector_0 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, vec_len)
 
 
         ##################################################
         # Connections
         ##################################################
+        self.connect((self.blocks_stream_to_vector_0, 0), (self.krakensdr_krakensdr_correlator_0, 0))
+        self.connect((self.blocks_stream_to_vector_0, 0), (self.krakensdr_krakensdr_correlator_0_0, 0))
+        self.connect((self.blocks_stream_to_vector_0, 0), (self.krakensdr_krakensdr_correlator_0_0_0, 0))
+        self.connect((self.blocks_stream_to_vector_0, 0), (self.krakensdr_krakensdr_correlator_0_0_1, 0))
+        self.connect((self.blocks_stream_to_vector_0_0, 0), (self.krakensdr_krakensdr_correlator_0, 1))
+        self.connect((self.blocks_stream_to_vector_0_0_0, 0), (self.krakensdr_krakensdr_correlator_0_0, 1))
+        self.connect((self.blocks_stream_to_vector_0_0_1, 0), (self.krakensdr_krakensdr_correlator_0_0_0, 1))
+        self.connect((self.blocks_stream_to_vector_0_0_2, 0), (self.krakensdr_krakensdr_correlator_0_0_1, 1))
         self.connect((self.krakensdr_krakensdr_correlator_0, 1), (self.phase_01, 0))
         self.connect((self.krakensdr_krakensdr_correlator_0, 0), (self.qtgui_vector_sink_f_0, 0))
         self.connect((self.krakensdr_krakensdr_correlator_0_0, 1), (self.phase_02, 0))
@@ -394,14 +408,11 @@ class kraken_corr_test(gr.top_block, Qt.QWidget):
         self.connect((self.krakensdr_krakensdr_correlator_0_0_0, 0), (self.qtgui_vector_sink_f_0_0_0, 0))
         self.connect((self.krakensdr_krakensdr_correlator_0_0_1, 1), (self.phase_04, 0))
         self.connect((self.krakensdr_krakensdr_correlator_0_0_1, 0), (self.qtgui_vector_sink_f_0_0_0_0, 0))
-        self.connect((self.krakensdr_krakensdr_source_0, 0), (self.krakensdr_krakensdr_correlator_0, 0))
-        self.connect((self.krakensdr_krakensdr_source_0, 1), (self.krakensdr_krakensdr_correlator_0, 1))
-        self.connect((self.krakensdr_krakensdr_source_0, 0), (self.krakensdr_krakensdr_correlator_0_0, 0))
-        self.connect((self.krakensdr_krakensdr_source_0, 2), (self.krakensdr_krakensdr_correlator_0_0, 1))
-        self.connect((self.krakensdr_krakensdr_source_0, 3), (self.krakensdr_krakensdr_correlator_0_0_0, 1))
-        self.connect((self.krakensdr_krakensdr_source_0, 0), (self.krakensdr_krakensdr_correlator_0_0_0, 0))
-        self.connect((self.krakensdr_krakensdr_source_0, 0), (self.krakensdr_krakensdr_correlator_0_0_1, 0))
-        self.connect((self.krakensdr_krakensdr_source_0, 4), (self.krakensdr_krakensdr_correlator_0_0_1, 1))
+        self.connect((self.krakensdr_krakensdr_source_0, 0), (self.blocks_stream_to_vector_0, 0))
+        self.connect((self.krakensdr_krakensdr_source_0, 1), (self.blocks_stream_to_vector_0_0, 0))
+        self.connect((self.krakensdr_krakensdr_source_0, 2), (self.blocks_stream_to_vector_0_0_0, 0))
+        self.connect((self.krakensdr_krakensdr_source_0, 3), (self.blocks_stream_to_vector_0_0_1, 0))
+        self.connect((self.krakensdr_krakensdr_source_0, 4), (self.blocks_stream_to_vector_0_0_2, 0))
 
 
     def closeEvent(self, event):
@@ -431,6 +442,10 @@ class kraken_corr_test(gr.top_block, Qt.QWidget):
 
     def set_fft_cut(self, fft_cut):
         self.fft_cut = fft_cut
+        self.qtgui_vector_sink_f_0.set_x_axis((-self.fft_cut//2), 1.0)
+        self.qtgui_vector_sink_f_0_0.set_x_axis((-self.fft_cut//2), 1.0)
+        self.qtgui_vector_sink_f_0_0_0.set_x_axis((-self.fft_cut//2), 1.0)
+        self.qtgui_vector_sink_f_0_0_0_0.set_x_axis((-self.fft_cut//2), 1.0)
 
 
 

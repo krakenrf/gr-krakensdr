@@ -75,6 +75,7 @@ class kraken_music_doa(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
+        self.samp_rate = samp_rate = 2400000
         self.decimation = decimation = 128
         self.cpi_size = cpi_size = 2**20
 
@@ -84,7 +85,7 @@ class kraken_music_doa(gr.top_block, Qt.QWidget):
         self.qtgui_time_sink_x_0 = qtgui.time_sink_f(
             360, #size
             1000, #samp_rate
-            "", #name
+            'DOA Graph', #name
             1, #number of inputs
             None # parent
         )
@@ -129,61 +130,61 @@ class kraken_music_doa(gr.top_block, Qt.QWidget):
 
         self._qtgui_time_sink_x_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0.qwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._qtgui_time_sink_x_0_win)
-        self.qtgui_time_raster_sink_x_0 = qtgui.time_raster_sink_f(
-            1000,
-            256,
-            256,
-            [],
-            [],
-            "",
+        self.qtgui_freq_sink_x_0 = qtgui.freq_sink_c(
+            2048, #size
+            window.WIN_BLACKMAN_hARRIS, #wintype
+            0, #fc
+            (samp_rate//decimation), #bw
+            'CH_0 Decimated FFT', #name
             1,
-            None
+            None # parent
         )
+        self.qtgui_freq_sink_x_0.set_update_time(0.1)
+        self.qtgui_freq_sink_x_0.set_y_axis((-60), 10)
+        self.qtgui_freq_sink_x_0.set_y_label('Relative Gain', 'dB')
+        self.qtgui_freq_sink_x_0.set_trigger_mode(qtgui.TRIG_MODE_FREE, 0.0, 0, "")
+        self.qtgui_freq_sink_x_0.enable_autoscale(True)
+        self.qtgui_freq_sink_x_0.enable_grid(False)
+        self.qtgui_freq_sink_x_0.set_fft_average(1.0)
+        self.qtgui_freq_sink_x_0.enable_axis_labels(True)
+        self.qtgui_freq_sink_x_0.enable_control_panel(False)
+        self.qtgui_freq_sink_x_0.set_fft_window_normalized(False)
 
-        self.qtgui_time_raster_sink_x_0.set_update_time(0.10)
-        self.qtgui_time_raster_sink_x_0.set_intensity_range((-1), 1)
-        self.qtgui_time_raster_sink_x_0.enable_grid(False)
-        self.qtgui_time_raster_sink_x_0.enable_axis_labels(True)
-        self.qtgui_time_raster_sink_x_0.set_x_label("")
-        self.qtgui_time_raster_sink_x_0.set_x_range(0.0, 0.0)
-        self.qtgui_time_raster_sink_x_0.set_y_label("")
-        self.qtgui_time_raster_sink_x_0.set_y_range(0.0, 0.0)
+
 
         labels = ['', '', '', '', '',
             '', '', '', '', '']
-        colors = [0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0]
+        widths = [1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1]
+        colors = ["blue", "red", "green", "black", "cyan",
+            "magenta", "yellow", "dark red", "dark green", "dark blue"]
         alphas = [1.0, 1.0, 1.0, 1.0, 1.0,
             1.0, 1.0, 1.0, 1.0, 1.0]
 
         for i in range(1):
             if len(labels[i]) == 0:
-                self.qtgui_time_raster_sink_x_0.set_line_label(i, "Data {0}".format(i))
+                self.qtgui_freq_sink_x_0.set_line_label(i, "Data {0}".format(i))
             else:
-                self.qtgui_time_raster_sink_x_0.set_line_label(i, labels[i])
-            self.qtgui_time_raster_sink_x_0.set_color_map(i, colors[i])
-            self.qtgui_time_raster_sink_x_0.set_line_alpha(i, alphas[i])
+                self.qtgui_freq_sink_x_0.set_line_label(i, labels[i])
+            self.qtgui_freq_sink_x_0.set_line_width(i, widths[i])
+            self.qtgui_freq_sink_x_0.set_line_color(i, colors[i])
+            self.qtgui_freq_sink_x_0.set_line_alpha(i, alphas[i])
 
-        self._qtgui_time_raster_sink_x_0_win = sip.wrapinstance(self.qtgui_time_raster_sink_x_0.qwidget(), Qt.QWidget)
-        self.top_layout.addWidget(self._qtgui_time_raster_sink_x_0_win)
-        self.krakensdr_krakensdr_source_0 = krakensdr.krakensdr_source('127.0.0.1', 5000, 5001, cpi_size, 5, 416.588, [40.2, 40.2, 40.2, 40.2, 40.2], False)
+        self._qtgui_freq_sink_x_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0.qwidget(), Qt.QWidget)
+        self.top_layout.addWidget(self._qtgui_freq_sink_x_0_win)
+        self.krakensdr_krakensdr_source_0 = krakensdr.krakensdr_source('127.0.0.1', 5000, 5001, 5, 416.588, [40.2, 40.2, 40.2, 40.2, 40.2], False)
         self.krakensdr_doa_music_0 = krakensdr.doa_music((cpi_size//decimation), 0.34, 5, 'UCA')
-        self.fir_filter_xxx_0_0_2 = filter.fir_filter_ccc(decimation, [decimation*2])
+        self.fir_filter_xxx_0_0_2 = filter.fir_filter_ccc(decimation, [decimation*5])
         self.fir_filter_xxx_0_0_2.declare_sample_delay(0)
-        self.fir_filter_xxx_0_0_1 = filter.fir_filter_ccc(decimation, [decimation*2])
+        self.fir_filter_xxx_0_0_1 = filter.fir_filter_ccc(decimation, [decimation*5])
         self.fir_filter_xxx_0_0_1.declare_sample_delay(0)
-        self.fir_filter_xxx_0_0_0 = filter.fir_filter_ccc(decimation, [decimation*2])
+        self.fir_filter_xxx_0_0_0 = filter.fir_filter_ccc(decimation, [decimation*5])
         self.fir_filter_xxx_0_0_0.declare_sample_delay(0)
-        self.fir_filter_xxx_0_0 = filter.fir_filter_ccc(decimation, [decimation*2])
+        self.fir_filter_xxx_0_0 = filter.fir_filter_ccc(decimation, [decimation*5])
         self.fir_filter_xxx_0_0.declare_sample_delay(0)
-        self.fir_filter_xxx_0 = filter.fir_filter_ccc(decimation, [decimation*2])
+        self.fir_filter_xxx_0 = filter.fir_filter_ccc(decimation, [decimation*5])
         self.fir_filter_xxx_0.declare_sample_delay(0)
-        self.blocks_vector_to_stream_0_3 = blocks.vector_to_stream(gr.sizeof_gr_complex*1, cpi_size)
         self.blocks_vector_to_stream_0_2_0 = blocks.vector_to_stream(gr.sizeof_float*1, 360)
-        self.blocks_vector_to_stream_0_2 = blocks.vector_to_stream(gr.sizeof_gr_complex*1, cpi_size)
-        self.blocks_vector_to_stream_0_1 = blocks.vector_to_stream(gr.sizeof_gr_complex*1, cpi_size)
-        self.blocks_vector_to_stream_0_0 = blocks.vector_to_stream(gr.sizeof_gr_complex*1, cpi_size)
-        self.blocks_vector_to_stream_0 = blocks.vector_to_stream(gr.sizeof_gr_complex*1, cpi_size)
         self.blocks_stream_to_vector_0_0_2 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, (cpi_size//decimation))
         self.blocks_stream_to_vector_0_0_1 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, (cpi_size//decimation))
         self.blocks_stream_to_vector_0_0_0 = blocks.stream_to_vector(gr.sizeof_gr_complex*1, (cpi_size//decimation))
@@ -199,24 +200,19 @@ class kraken_music_doa(gr.top_block, Qt.QWidget):
         self.connect((self.blocks_stream_to_vector_0_0_0, 0), (self.krakensdr_doa_music_0, 2))
         self.connect((self.blocks_stream_to_vector_0_0_1, 0), (self.krakensdr_doa_music_0, 3))
         self.connect((self.blocks_stream_to_vector_0_0_2, 0), (self.krakensdr_doa_music_0, 4))
-        self.connect((self.blocks_vector_to_stream_0, 0), (self.fir_filter_xxx_0, 0))
-        self.connect((self.blocks_vector_to_stream_0_0, 0), (self.fir_filter_xxx_0_0, 0))
-        self.connect((self.blocks_vector_to_stream_0_1, 0), (self.fir_filter_xxx_0_0_0, 0))
-        self.connect((self.blocks_vector_to_stream_0_2, 0), (self.fir_filter_xxx_0_0_1, 0))
-        self.connect((self.blocks_vector_to_stream_0_2_0, 0), (self.qtgui_time_raster_sink_x_0, 0))
         self.connect((self.blocks_vector_to_stream_0_2_0, 0), (self.qtgui_time_sink_x_0, 0))
-        self.connect((self.blocks_vector_to_stream_0_3, 0), (self.fir_filter_xxx_0_0_2, 0))
         self.connect((self.fir_filter_xxx_0, 0), (self.blocks_stream_to_vector_0, 0))
+        self.connect((self.fir_filter_xxx_0, 0), (self.qtgui_freq_sink_x_0, 0))
         self.connect((self.fir_filter_xxx_0_0, 0), (self.blocks_stream_to_vector_0_0, 0))
         self.connect((self.fir_filter_xxx_0_0_0, 0), (self.blocks_stream_to_vector_0_0_0, 0))
         self.connect((self.fir_filter_xxx_0_0_1, 0), (self.blocks_stream_to_vector_0_0_1, 0))
         self.connect((self.fir_filter_xxx_0_0_2, 0), (self.blocks_stream_to_vector_0_0_2, 0))
         self.connect((self.krakensdr_doa_music_0, 0), (self.blocks_vector_to_stream_0_2_0, 0))
-        self.connect((self.krakensdr_krakensdr_source_0, 0), (self.blocks_vector_to_stream_0, 0))
-        self.connect((self.krakensdr_krakensdr_source_0, 1), (self.blocks_vector_to_stream_0_0, 0))
-        self.connect((self.krakensdr_krakensdr_source_0, 2), (self.blocks_vector_to_stream_0_1, 0))
-        self.connect((self.krakensdr_krakensdr_source_0, 3), (self.blocks_vector_to_stream_0_2, 0))
-        self.connect((self.krakensdr_krakensdr_source_0, 4), (self.blocks_vector_to_stream_0_3, 0))
+        self.connect((self.krakensdr_krakensdr_source_0, 0), (self.fir_filter_xxx_0, 0))
+        self.connect((self.krakensdr_krakensdr_source_0, 1), (self.fir_filter_xxx_0_0, 0))
+        self.connect((self.krakensdr_krakensdr_source_0, 2), (self.fir_filter_xxx_0_0_0, 0))
+        self.connect((self.krakensdr_krakensdr_source_0, 3), (self.fir_filter_xxx_0_0_1, 0))
+        self.connect((self.krakensdr_krakensdr_source_0, 4), (self.fir_filter_xxx_0_0_2, 0))
 
 
     def closeEvent(self, event):
@@ -227,16 +223,24 @@ class kraken_music_doa(gr.top_block, Qt.QWidget):
 
         event.accept()
 
+    def get_samp_rate(self):
+        return self.samp_rate
+
+    def set_samp_rate(self, samp_rate):
+        self.samp_rate = samp_rate
+        self.qtgui_freq_sink_x_0.set_frequency_range(0, (self.samp_rate//self.decimation))
+
     def get_decimation(self):
         return self.decimation
 
     def set_decimation(self, decimation):
         self.decimation = decimation
-        self.fir_filter_xxx_0.set_taps([self.decimation*2])
-        self.fir_filter_xxx_0_0.set_taps([self.decimation*2])
-        self.fir_filter_xxx_0_0_0.set_taps([self.decimation*2])
-        self.fir_filter_xxx_0_0_1.set_taps([self.decimation*2])
-        self.fir_filter_xxx_0_0_2.set_taps([self.decimation*2])
+        self.fir_filter_xxx_0.set_taps([self.decimation*5])
+        self.fir_filter_xxx_0_0.set_taps([self.decimation*5])
+        self.fir_filter_xxx_0_0_0.set_taps([self.decimation*5])
+        self.fir_filter_xxx_0_0_1.set_taps([self.decimation*5])
+        self.fir_filter_xxx_0_0_2.set_taps([self.decimation*5])
+        self.qtgui_freq_sink_x_0.set_frequency_range(0, (self.samp_rate//self.decimation))
 
     def get_cpi_size(self):
         return self.cpi_size
