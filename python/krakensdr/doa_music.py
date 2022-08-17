@@ -9,7 +9,7 @@
 
 import numpy as np
 import numpy.linalg as lin
-from scipy import signal
+#from scipy import signal
 
 from gnuradio import gr
 
@@ -17,18 +17,28 @@ class doa_music(gr.sync_block):
     """
     docstring for block doa_music
     """
-    def __init__(self, vec_len=1048576, spacing=0.33, num_elements=5, array_type='UCA'):
+    def __init__(self, vec_len=1048576, freq=433.0, array_dist=0.33, num_elements=5, array_type='UCA'):
         gr.sync_block.__init__(self,
             name="DOA MUSIC",
             in_sig=[(np.complex64, vec_len)] * num_elements,
             out_sig=[(np.float32, 360)])
             
         self.cpi_size = vec_len
-        self.spacing = spacing
+        self.freq = freq
+        self.array_dist = array_dist
         self.num_elements = num_elements
-        self.array_type = array_type    
+        self.array_type = array_type
+
+        wavelength = 300 / freq
+        if array_type == 'UCA':
+            inter_elem_spacing = (np.sqrt(2) * array_dist * np.sqrt(1 - np.cos(np.deg2rad(360 / num_elements))))
+            wavelength_mult = inter_elem_spacing / wavelength
+        else:
+            wavelength_mult = array_dist / wavelength
         
-        self.scanning_vectors = self.gen_scanning_vectors(self.num_elements, self.spacing, self.array_type, 0)
+        self.scanning_vectors = self.gen_scanning_vectors(self.num_elements, wavelength_mult, self.array_type, 0)
+
+        print("wavelength mult: " + str(wavelength_mult))
         
     def work(self, input_items, output_items):
 
@@ -41,23 +51,14 @@ class doa_music(gr.sync_block):
         processed_signal[4,:] = input_items[4][0][:]
         
         #decimated_processed_signal = signal.decimate(processed_signal, 100, n=100 * 2, ftype='fir')
-        # Doing decimation in GNU Radio blocks
+        # Doing decimation in GNU Radio blocks, or uncomment to do decimation in scipy
         decimated_processed_signal = processed_signal
-        
-        #print("decimated size: " + str(np.size(decimated_processed_signal[0])))
-        
-        #print("starting doa")
-        
+       
         R = self.corr_matrix(decimated_processed_signal)
-
         DOA_MUSIC_res = self.DOA_MUSIC(R, self.scanning_vectors, signal_dimension=1)
-        
         doa_plot = self.DOA_plot_util(DOA_MUSIC_res)
-
         output_items[0][0][:] = doa_plot
-        
-        #print("len output: " + str(np.shape(output_items[0])))
-               
+                       
         return len(output_items[0])
 
 

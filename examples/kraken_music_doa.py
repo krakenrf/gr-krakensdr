@@ -76,6 +76,7 @@ class kraken_music_doa(gr.top_block, Qt.QWidget):
         # Variables
         ##################################################
         self.samp_rate = samp_rate = 2400000
+        self.freq = freq = 433.000
         self.decimation = decimation = 128
         self.cpi_size = cpi_size = 2**20
 
@@ -172,8 +173,8 @@ class kraken_music_doa(gr.top_block, Qt.QWidget):
 
         self._qtgui_freq_sink_x_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0.qwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._qtgui_freq_sink_x_0_win)
-        self.krakensdr_krakensdr_source_0 = krakensdr.krakensdr_source('127.0.0.1', 5000, 5001, 5, 416.588, [40.2, 40.2, 40.2, 40.2, 40.2], False)
-        self.krakensdr_doa_music_0 = krakensdr.doa_music((cpi_size//decimation), 0.34, 5, 'UCA')
+        self.krakensdr_krakensdr_source_0 = krakensdr.krakensdr_source('127.0.0.1', 5000, 5001, 5, freq, [40.2, 40.2, 40.2, 40.2, 40.2], False)
+        self.krakensdr_doa_music_0 = krakensdr.doa_music((cpi_size//decimation), freq, 0.26, 5, 'UCA')
         self.fir_filter_xxx_0_0_2 = filter.fir_filter_ccc(decimation, [decimation*5])
         self.fir_filter_xxx_0_0_2.declare_sample_delay(0)
         self.fir_filter_xxx_0_0_1 = filter.fir_filter_ccc(decimation, [decimation*5])
@@ -229,6 +230,13 @@ class kraken_music_doa(gr.top_block, Qt.QWidget):
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
         self.qtgui_freq_sink_x_0.set_frequency_range(0, (self.samp_rate//self.decimation))
+
+    def get_freq(self):
+        return self.freq
+
+    def set_freq(self, freq):
+        self.freq = freq
+        self.krakensdr_krakensdr_source_0.set_freq(self.freq)
 
     def get_decimation(self):
         return self.decimation

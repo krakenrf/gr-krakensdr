@@ -4,7 +4,7 @@ category: '[KrakenSDR]'
 
 templates:
   imports: from gnuradio import krakensdr
-  make: krakensdr.doa_music(${vec_len}, ${spacing}, ${num_elements}, ${array_type})
+  make: krakensdr.doa_music(${vec_len}, ${freq}, ${array_dist}, ${num_elements}, ${array_type})
 
 #  Make one 'parameters' list entry for every parameter you want settable from the GUI.
 #     Keys include:
@@ -17,10 +17,14 @@ parameters:
   label: CPI Size
   dtype: int
   default: 1048576
-- id: spacing
-  label: Array spacing (Radius or IES)
-  dtype: float
-  default: 0.33
+- id: freq
+  label: Frequency [MHz]
+  dtype: real
+  default: 433
+- id: array_dist
+  label: Array spacing (radius for UCA or interelement for ULA)
+  dtype: real
+  default: 0.5
 - id: num_elements
   label: Number antenna elements
   dtype: int

@@ -57,6 +57,18 @@ blocks:
     coordinate: [296, 12.0]
     rotation: 0
     state: enabled
+- name: freq
+  id: variable
+  parameters:
+    comment: ''
+    value: '433.000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [504, 12.0]
+    rotation: 0
+    state: enabled
 - name: samp_rate
   id: variable
   parameters:
@@ -264,7 +276,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1104, 336.0]
+    coordinate: [1248, 336.0]
     rotation: 0
     state: enabled
 - name: fir_filter_xxx_0
@@ -367,12 +379,13 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
+    array_dist: '0.26'
     array_type: '''UCA'''
     comment: ''
+    freq: freq
     maxoutbuf: '0'
     minoutbuf: '0'
     num_elements: '5'
-    spacing: '0.34'
     vec_len: cpi_size//decimation
   states:
     bus_sink: false
@@ -389,7 +402,7 @@ blocks:
     comment: ''
     ctrlPort: '5001'
     debug: 'False'
-    freq: '416.588'
+    freq: freq
     gain: '[40.2, 40.2, 40.2, 40.2, 40.2]'
     ipAddr: 127.0.0.1
     maxoutbuf: '0'
@@ -481,7 +494,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [664, 44.0]
+    coordinate: [584, 124.0]
     rotation: 0
     state: true
 - name: qtgui_time_sink_x_0
@@ -578,7 +591,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1280, 308.0]
+    coordinate: [1424, 308.0]
     rotation: 0
     state: true
 
