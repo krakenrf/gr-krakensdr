@@ -10,9 +10,7 @@
 import numpy as np
 import socket
 import _thread
-import time
 import queue
-#from multiprocessing import Queue
 from threading import Thread
 from threading import Lock
 from gnuradio import gr
@@ -32,7 +30,6 @@ class krakensdr_source(gr.sync_block):
             #out_sig=[(np.complex64, cpi_size)] * numChannels)
 
         self.valid_gains = [0, 0.9, 1.4, 2.7, 3.7, 7.7, 8.7, 12.5, 14.4, 15.7, 16.6, 19.7, 20.7, 22.9, 25.4, 28.0, 29.7, 32.8, 33.8, 36.4, 37.2, 38.6, 40.2, 42.1, 43.4, 43.9, 44.5, 48.0, 49.6]
-
 
         self.ipAddr = ipAddr
         self.port = port
@@ -80,7 +77,7 @@ class krakensdr_source(gr.sync_block):
                 self.iq_header.dump_header()
                 
             if self.stop_threads: # Stop thread on close
-                break
+                return
                 
             iq_samples = self.get_iq_online()
 
@@ -110,8 +107,7 @@ class krakensdr_source(gr.sync_block):
                 print("Not a data frame, skipping")
                 return 0
             '''
-            
-            #self.iq_samples = np.empty((self.numChannels, self.iq_header.cpi_length), dtype=np.complex64)
+
             try:
                 self.iq_samples = self.iq_sample_queue.get(True, 3) # Block until samples are ready
             except Exception as e:
@@ -121,9 +117,9 @@ class krakensdr_source(gr.sync_block):
 
             self.total_fetched = 0
 
-        fetch_left = self.cpi_len - self.total_fetched # How much of the iq_samples buffer is left to stream out
-        output_items_req = len(output_items[0]) # Scheduler requests this many items out
-        output_items_now = min(output_items_req, fetch_left) # We will output this many. Either the requested amount, or if we have less.
+        fetch_left = self.cpi_len - self.total_fetched  # How much of the iq_samples buffer is left to stream out
+        output_items_req = len(output_items[0])  # Scheduler requests this many items out
+        output_items_now = min(output_items_req, fetch_left)  # We will output this many. Either the requested amount, or if we have less.
 
         try:
             for n in range(self.numChannels):
@@ -136,7 +132,7 @@ class krakensdr_source(gr.sync_block):
 
         self.total_fetched = self.total_fetched + output_items_now
 
-        return output_items_now #Output number of items
+        return output_items_now  # Output number of items
 
     def stop(self):
         self.stop_threads = True
@@ -159,7 +155,7 @@ class krakensdr_source(gr.sync_block):
         """
         try:
             if not self.receiver_connection_status:
-                # Establlish IQ data interface connection
+                # Establish IQ data interface connection
                 self.socket_inst.connect((self.ipAddr, self.port))
                 self.socket_inst.sendall(str.encode('streaming'))
                 test_iq = self.receive_iq_frame()
