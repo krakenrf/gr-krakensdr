@@ -23,7 +23,7 @@ sudo make install
 
 First install Heimdall https://github.com/krakenrf/heimdall_daq_fw
 
-Next copy the heimdall_only_start.sh file from this repo into your krakensdr root directory.
+Next copy the heimdall_only_start.sh and heimdall_only_stop.sh file from this repo into your krakensdr root directory.
 
 In the heimdall_daq_fw folder edit your Firmware/daq_chain_config.ini file and change out_data_iface_type to eth.
 
