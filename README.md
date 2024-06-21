@@ -21,7 +21,9 @@ sudo make install
 
 ## Usage Instructions
 
-First install Heimdall https://github.com/krakenrf/heimdall_daq_fw
+First install Heimdall https://github.com/krakenrf/heimdall_daq_fw. 
+
+If you are using the ready to use direction finding image first disable the autoboot of the direction finding software, or it could interfere with the heimdall connection. Go into the /boot directory and rename "start_kraken.sh" to something like "start_kraken.sh_stop" to stop the direction finding app autobooting.
 
 Next copy the heimdall_only_start.sh and heimdall_only_stop.sh file from this repo into your krakensdr root directory.
 
