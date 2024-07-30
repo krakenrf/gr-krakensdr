@@ -44,12 +44,10 @@ class doa_music(gr.sync_block):
 
         #print("input items size: " + str(np.shape(input_items)))
         processed_signal = np.empty((self.num_elements, self.cpi_size), dtype=np.complex64)
-        processed_signal[0,:] = input_items[0][0][:]
-        processed_signal[1,:] = input_items[1][0][:]
-        processed_signal[2,:] = input_items[2][0][:]
-        processed_signal[3,:] = input_items[3][0][:]
-        processed_signal[4,:] = input_items[4][0][:]
-        
+
+        for i in range(self.num_elements):
+            processed_signal[i, :] = input_items[i][0][:]
+
         #decimated_processed_signal = signal.decimate(processed_signal, 100, n=100 * 2, ftype='fir')
         # Doing decimation in GNU Radio blocks, or uncomment to do decimation in scipy
         decimated_processed_signal = processed_signal
